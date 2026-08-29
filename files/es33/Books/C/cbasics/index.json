@@ -1,0 +1,38 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "c.c",
+    "type": "file"
+  },
+  {
+    "name": "case.c",
+    "type": "file"
+  },
+  {
+    "name": "hello.c",
+    "type": "file"
+  },
+  {
+    "name": "hi",
+    "type": "file"
+  },
+  {
+    "name": "hiii",
+    "type": "file"
+  },
+  {
+    "name": "Swap_pointers.c",
+    "type": "file"
+  },
+  {
+    "name": "swap_xor.c",
+    "type": "file"
+  },
+  {
+    "name": "Swapping_Function.c",
+    "type": "file"
+  }
+]

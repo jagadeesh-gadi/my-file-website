@@ -1,0 +1,62 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "average_numbers.c",
+    "type": "file"
+  },
+  {
+    "name": "check_Case.c",
+    "type": "file"
+  },
+  {
+    "name": "difference.c",
+    "type": "file"
+  },
+  {
+    "name": "divisibleby3_5.c",
+    "type": "file"
+  },
+  {
+    "name": "divisibleby5or7.c",
+    "type": "file"
+  },
+  {
+    "name": "even_odd.c",
+    "type": "file"
+  },
+  {
+    "name": "largest_array.c",
+    "type": "file"
+  },
+  {
+    "name": "largest_number.c",
+    "type": "file"
+  },
+  {
+    "name": "leap_year.c",
+    "type": "file"
+  },
+  {
+    "name": "marks_calculate.c",
+    "type": "file"
+  },
+  {
+    "name": "precedance.c",
+    "type": "file"
+  },
+  {
+    "name": "remove_duplicates.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_array.c",
+    "type": "file"
+  },
+  {
+    "name": "type_casting.c",
+    "type": "file"
+  }
+]

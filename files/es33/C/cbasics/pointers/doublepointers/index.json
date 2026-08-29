@@ -1,0 +1,14 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "pointer_to_pointer.c",
+    "type": "file"
+  },
+  {
+    "name": "usingmalloc.c",
+    "type": "file"
+  }
+]

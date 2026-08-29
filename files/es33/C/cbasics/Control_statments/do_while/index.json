@@ -1,0 +1,10 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "multiplication.c",
+    "type": "file"
+  }
+]

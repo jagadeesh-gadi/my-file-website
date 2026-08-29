@@ -1,0 +1,30 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "basics.c",
+    "type": "file"
+  },
+  {
+    "name": "count_vowels.c",
+    "type": "file"
+  },
+  {
+    "name": "largest_array.c",
+    "type": "file"
+  },
+  {
+    "name": "longest_word.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_array.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_string.c",
+    "type": "file"
+  }
+]

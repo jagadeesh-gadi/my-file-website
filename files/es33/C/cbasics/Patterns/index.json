@@ -1,0 +1,54 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "Daimond.c",
+    "type": "file"
+  },
+  {
+    "name": "hallow_right.c",
+    "type": "file"
+  },
+  {
+    "name": "Hallow_square.c",
+    "type": "file"
+  },
+  {
+    "name": "hourglass_prymid.c",
+    "type": "file"
+  },
+  {
+    "name": "hoursglass_hor_prymid.c",
+    "type": "file"
+  },
+  {
+    "name": "number_triangle.c",
+    "type": "file"
+  },
+  {
+    "name": "Pascals_triangle.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_right.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_triangle.c",
+    "type": "file"
+  },
+  {
+    "name": "right.c",
+    "type": "file"
+  },
+  {
+    "name": "square.c",
+    "type": "file"
+  },
+  {
+    "name": "triangle.c",
+    "type": "file"
+  }
+]

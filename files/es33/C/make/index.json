@@ -1,0 +1,42 @@
+[
+  {
+    "name": "a-hello.i",
+    "type": "file"
+  },
+  {
+    "name": "a-hello.o",
+    "type": "file"
+  },
+  {
+    "name": "a-hello.s",
+    "type": "file"
+  },
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "add.c",
+    "type": "file"
+  },
+  {
+    "name": "add.o",
+    "type": "file"
+  },
+  {
+    "name": "depth",
+    "type": "file"
+  },
+  {
+    "name": "gdb_tool.c",
+    "type": "file"
+  },
+  {
+    "name": "hello.c",
+    "type": "file"
+  },
+  {
+    "name": "program",
+    "type": "file"
+  }
+]

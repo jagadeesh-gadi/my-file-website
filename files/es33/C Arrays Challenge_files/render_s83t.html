@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="ROBOTS" content="NOINDEX">
+    <meta name="ROBOTS" content="NOFOLLOW">
+    <meta name="ROBOTS" content="NOARCHIVE">
+    <meta name="ROBOTS" content="NOSNIPPET">
+    <meta name="ROBOTS" content="NOODP ">
+    <script>
+    (function() {
+        /**
+         * Neutralizes AudioContext constructors on a given window.
+         * @param {Window} win The target window.
+         */
+        var neutralizeAudio = function(win, iframe = false) {
+            try {
+                if (!win) return;
+
+                var noOp = function() { 
+                    console.log("AudioContext creation attempt blocked."+(iframe ? ' inside iframe':''));
+                    return null; 
+                };
+
+                // Override standard and prefixed APIs (webkit for Safari)
+                win.AudioContext = noOp;
+                win.webkitAudioContext = noOp;
+                win.OfflineAudioContext = noOp;
+                win.webkitOfflineAudioContext = noOp;
+                
+                // Optional: Also block the __pm_glbl global script if necessary
+                Object.defineProperty(win, '__pm_glbl', {
+                    set: function(val) { console.log("__pm_glbl write attempt blocked"+(iframe ? ' inside iframe':'')); },
+                    get: function() { return {}; },
+                    configurable: true // Important to be able to redefine it
+                });
+            } catch (e) {
+                // Silent for cross-origin iframes where access is denied
+            }
+        };
+
+        /**
+         * Processes an iframe element, waiting for it to load if necessary.
+         * @param {HTMLIFrameElement} iframe The iframe to process.
+         */
+        var processIframe = function(iframe) {
+            // The iframe may already be loaded, especially if it's empty (about:blank)
+            neutralizeAudio(iframe.contentWindow, true);
+            // Add a load listener to be sure to run it after the content has loaded
+            iframe.addEventListener('load', function() {
+                neutralizeAudio(iframe.contentWindow, true);
+            });
+        };
+
+        // Neutralize the main window immediately
+        neutralizeAudio(window);
+
+        var setupObservers = function() {
+            // Process iframes already present in the document
+            var existingIframes = document.getElementsByTagName('iframe');
+            for (var i = 0; i < existingIframes.length; i++) {
+                processIframe(existingIframes[i]);
+            }
+
+            // Observe the document to detect the addition of new iframes
+            if ('MutationObserver' in window) {
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        mutation.addedNodes.forEach(function(node) {
+                            // If the added node is an iframe
+                            if (node.tagName === 'IFRAME') {
+                                processIframe(node);
+                            }
+                            // If the node contains iframes
+                            else if (node.nodeType === 1 && node.querySelectorAll) {
+                                var childIframes = node.querySelectorAll('iframe');
+                                for (var j = 0; j < childIframes.length; j++) {
+                                    processIframe(childIframes[j]);
+                                }
+                            }
+                        });
+                    });
+                });
+
+                // Start observing the body
+                if (document.body) {
+                    observer.observe(document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+                }
+            }
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setupObservers);
+        } else {
+          setupObservers();
+        }
+    })();
+    </script>
+    
+    <!-- base href="https://srv.flashb.id/sf/1.1/37dc2490-e69a-50b6-b814-d999fdbee40b/render.html?m=true&csa=1" -->
+    <script type="text/javascript">
+      window.onerror = function (e) { return true };
+      window.adSize = {width: 300, height: 250};
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            min-height: 100% !important;
+            background-color: transparent;
+        }
+    </style>
+    <script src="render_data/sf_1_6_3_m_s83t.js"></script>
+
+    
+</head>
+<body id="sf_body">
+    <span class="PubAPIAd" id="1592db11c4d3e2b08"><div id="5781A3D4-6FF5-4DED-963D-5C048A89B697:1"></div><script>window.inBannerVideoConfig = {"bbw_adunit_code":"pubmatic_ibv_web","logging_frequency":0,"behaviour":"COLLAPSE","maxWidth":300};window.uniqueElementId = "5781A3D4-6FF5-4DED-963D-5C048A89B697:1";window.vast_xml= "<VAST version=\"4.2\">\n<Ad id=\"1\">\n<Wrapper>\n<AdSystem>PubMatic</AdSystem>\n<VASTAdTagURI><![CDATA[https://bid.g.doubleclick.net/dbm/vast?dbm_c=AKAmf-Abd_1y1ZyvmwD4wEMrF-9wvz_9WxNUyImHK29rIGx-VuZlVO2mEliSK6G78sdUy_AX9WjrGAGDdG7AQRvGAWP4er5Lqg&dbm_d=AKAmf-Ae10i09s41Wqi0xG3XcLR7s5jcl9HIkfe65g65N53lgilnEo7ENCDTKO-pw4vFSpHpg7bmVnKO0JsX2UoEQPn7M9tRMkrE7-vnLHVdVljNnGppzJUxuRGzuZyAkIFhwPdoic52WsGoiPDtvPhXty4a3I1a-McIH3XDVVSDVtzzzvyW-MBpEazrOpK3Of7QPd3_JEqLuXA8a0Ioexr9rEP8nRivzODHr2pttSrDkXkAnOE3xypqClBo-Xn9L-03Xl_l5Fofdft3fp1j8zsLCJeUUUm8bT6Aya-yUud3YiNplrdbletI1kPG12w_PbsFE_qQvfGlOFnZijoZfljWEKh6KshPPteOFoSeH1mWNTfBokMkuObWYDCeYUV0qoKwdDx6cW_P0VZxaqVLw9PEsRT7uv61wuUkNak3ndh1FGWRqIRv8DuYJ_-iU-o01r6lH0DbNXtUjYDXxZf3p_vSXJJktkR9iQXOYrx3oKcDNCDkE5P7kimX9QiR58XkhCh5w8K1cyiry7EROpc0eU5a3GkgvL8_mPYpeK_wBo9Tyjg7xZD_Sq7sTXdduGs_i_ElAVHCYV9MufF8BV6xI_UvAYBLrCxT4Qb_tSBuqcRD63CxnhAP8vD3FVpoEDdkqz1avYhyoRjrGKc7IoOoXdTffCAJysm2xjrUfLr1V-XcXGIIefaI-t4dCxVqQmhGRoqzHUpTWcB__PBXKxi28_P9nqOFvV4wYchTXAIbiYtYaZ2RF3VlOKUTVL_QmVIxn6Ywgs5pUNY-gqRwRZ-0qgDeJChhb9UBOOWjehNwc1sQNYr5N-g8mOVTjt4q1HGkrea-KkHReRqTsLKQEboyHF9HdfotzbReXHBC02jCNcmHS85n7u7rDNOdUOSZmBkSAfIooO2TbEJnpL9GivIz1v0D62RxElUww0W_xGy9rAiC2bRIfJixwvsZBalYRjz86J7NDGVSOJQpiSYngnbJJ9vMErnUf7NnFnB3l2_zotymOBU1fwedOC89BAkJd70asuBeUNPsBAOs0rV-nF7JAQrJfP2MZyLHPP3yuJCc-o29awsc5GE4grc4Qgk3k0x830-Y0FqIyVEjCcCgfTMB8iuYmur9yVl2PEBi90l5dVSzZeF2b9QB_l8vggM8jnhT2OZY3ZbKT5DEQkmlvkX-4ETwis_8Yuain23gq248Jn1s8mlDetAFYDR0vS_JV3Nqv8nPVaKDTXqXnKo9doCtvttEB_54hh5O9FM4ZwXhAUXttOVZA9i-ak5DKLoxDljHSOLY4PLiseJyEbJCYP3BsJqHodW63XDOf0nY6nucTFV57_6A63F4wSTk9YOHW7-LB8L-TV0GVcL_SIzwxVsx-JBGsMfxGYnV0yCt8oHG7-6zwfeb85-s_-Ll5iHAM2Eznl8IUNjlHz6GsIcoIZcwx-CN9Z6_dXQ9IrdLFEKKknJSt6u80kGpd9aM-jUzuHXLW74ndkjrv-molsJKuvv39ZfbfvVuSasqR74Djsn4DecJxNW8OERZc0XZVv6JiGlsd5qgK0Ke7DzM52wyVWLzDMRUpOthjTw45N4emHm-avmDJL6Q1EioJL5kktZqIa3E-0ekHAI3dqVhBa-2SaoO5O4Bzpr5gjudYzA2iawOAdeteDKQg_6cqI_eT7sttFl7sx2JlBiaCrnSryR2VSfZDAuy21NzJ3NxV-2dn3oyX0EMYQKwtnu1S0RWpRv8U8au3jPQHIL0nzYP5gcGUhsZ5VG016K7lfcT9sVjdKUchcogXT5OvR_5ClunXX0bziuvqjOYmWDOqthxAwtRH8hezfosTN_EwfLd1AFcUo1JbVq8tReVNV25USg22WS2UtxVvwVoeNAGX7k0JHnFBbE-pQaREJ2FwDC1N7AmWRrTzgaTttjwYzOcJhL9ynaQ_CjVNvRovP3YnWJECR3sHyLaTjFROrUij0tpoFExT27U-sv8DlssIt49BafuhXiK7nJ34Nz1crnEGzRrl7arzT_Fis1jojWL31qbOOn8e_1xdYkye3WzOluNcg8JHDmU2Qh1A9V42-ewcNNK1omOOUaCQ6F1wcazbyRHBbdn4GJmUMbFD5QBDzcuAWG9e6ekoQ9XQDHapVADKRcDKnyQaspoMej2Iqp8G86CYW3BgKc99ujYmBct2VtisMRkCHB5tvvnLIak2Pfs-2DQHR7xQQQO-oPYE5P3RCOmqqBGq9iDMmi3yaSbdCQchL0jo1vQCaBAeBs6WXY96nB6hqgl9eN9NV2rTorLAUBglK3e1h92Zk00cQJq5ftk3NEAG9DzJrzrZG_cgc-H7kWEpo2l8VBJPWBbC-neqBElP6glXo1G990Oht-kne-Yf2STsxpbDfs39QpogUCWtO5k1BD3sk3_VLigap9KiE8IadDRjZXuiKQFN9E0B8INBZG1GM2LQE5UqV3GgZyEHIJr6yvYyvi-b1Pp4aGBJi4m_32FiUCEfRD5qVurYyqD7llC-kawL8yJ48N5IhVr_bS3LWkVQWGkuwtIOQTEZC2VGNN-zBELSOnU1qg4ntfKpAlUJXXAMTTjCESayoxh811jvAmYTpRSF5IZcnmIJh0Z2YIwL9cdlpdv43S8OgadWxxa26pxOv0FnotHS_dhKb20TTWHUVuvWy7yrmN2fVaMflemwKXevwXCA5OKzS0wk561iZSeHbPg1AInRs6TjaoXH8kj9XZ7I9qyqYnf3Gb8nixrQokLuoy15f2tt2Pp2OGLWq33k4Gf6g45M_-Q6W7CCu1DHmIf_XNNYytBtTodhyTvvDijwFe43bGqh4tnfp3_o6Wp1oB612XjxFoRg0WLRgD5q8OLmGzf7G_y21hC170tYuGQwJz8mNna_jIhqP0aBil82KvDjl3ckGJIF1WzH6wP89Np2aDDMct59TBctbHZH4TfzrSc13OUOQpF2xYwhjttESlVf4MtYTYmXZeSDYKEJqOlMPqd6CZqgGmY9Yv0BHR0SaoLSvuWZJllOYbtsAfCy-ShwvyViMlLQNQ4SGL5gCUagDT5CZBI3rtmWG58QFbaV_GVf30_cHRqCl_VoTeDfO_f0fGU92DSvaD83LZp_Lwc9R-pEwscyqlXAufQRvU-yJoiQ1aeO1RnOPCWFBjriLOCrB5vlbw_kkfSZaToh58gyRqar78fVQPV2RXXBsQUMUqEzAhHAs9_AH6a8GqsJH3gBxrQKhrhJrvWGgyDZKhUFWNCGRlpNa6y-ZfBB2tiAny_Shy6TI5Oe_UUeptzXvpBYOCyYMsYzCWhGRNw9vTanyuB5AvPy0W7aKz5FiUsSdhj3kKjoRToos-_f8QVx04UxGg9LTJmbDmcQ7yEG-TUfzmNIi0sqMba8a2bFI_inj_DhmooFt5FIDeMyT7kzg_bnNWKALBVrCUk32NI20fbS-xp-mXWpO7en5K47IQ2q-x_rHo-DwSV09Ev3yYxm9tAoe7lpnkmG-EY0hoHSBcJTRRiUIuqYwNz21r1uSElECoYbD4-X5BpbJdr-uW4dG2pu4pBt5bjVSsqrlr0o8gtXfEfOqMCet3ZE4hZgpRqQoIeca1FPQ1TgFHuyn1UsrA5ubtpHL7-EQkk_cd8P1R5AA-XQ_qmCA1U3R0YU0rZUtA2P8cV9Z2N9zYklHSCNNz78PCE82yXhE4X4_BVUajQA3Z7kOaf0iJojm5qtQCtG4iKBkxVgbZle6R-fipKSbtiBW2gnmjxtlanZmWoIKHx-lzrdiBMz3L9unlRjXb78D6ETMBn88SznbQNFXv9qQ7-1Yqz6Z0xvquZrGC4WTBdBcxqd1sHYlzoDyGyQkJTkVD_pyIakwgob71bY3OOHIdGeZB7DFY1703welhFtCCOE4Jm3vOF9KuO2YYUgomqxHRPrNsHqK37C6gNs5dard-zdm1ysm0IwecDl5kuiGvmQImBGMJOzikpUih2ubcxT8LSJB6D9stftetxf_2gSWnO5PVwjSit7iYpdDBAhisRC2JX4twHa1BHxQX-GbPgxebkoVk2RDJy3n_VvXv2A-wD9h_cst9FEO6flDn3OHYhT16Qe1zNjjhlbjM9o3gDVQZaEDoBe4g7fknSdi8D6zxlu4B7GUrETMTQtFX4JoEkALZC5Xoid8_C6mxZJaG03BmwSxKp0cOfWfFZB4bhrBnAqWEjp-JCxJmAeUUZ-zWbeVawxzKj4Cbs8EkG2bLCG0ptkyw5-uQIALDwlsdz90XtXJniPd1kDJkDR9GR6JXAabVeDuxTnVJ_OjhL80gxtvSfG0RT9b7kLv9RJqDzDZhG-nSFIvHnFjv-K2r56bfc1uN-91wiqQzSU9id_LfZR_KYomXinHUvJHTYUiXQcaCxxdE1BwXg114TCIL_-2RlNgnQQ7layJSDlyyxZEBC2b8dv6C9Gkw7fdQuUkGURk64ewJWTMTpSf5KRdAs9QBm2TlVjhjNjYlRKRbuSwoKcxxdmt0dgkkMWqP6gN-4voYaZDLw2Xb3YkK1cA-F19x0lzjiuJfar-rkgIO4KOJ3lM8umBzHRWiKAX6q2r-dIrT9Zishh38X3Bvx6Z07XChOvSqhQ7LYeHLC1O4SYVUJPHM-Lva-S60TLyk&cid=CAQSgQIAEQoqgaizNJv9bI5JsfE-891jXdyqHyZdGeHqU1ZztodoUXa26FnuFKl8F-AjTgdJvMAfqINRXtd86EZJ5PwyFKQ0UFQzQ53j9ahLy_I5Y_-EbqEy_s4aZQPpL-hDr9XjIeTz2vultyJLciZiVlc6X9nTPKmbY49sZx_h-2HWo8QKTiOwHopI9VCYd8teZok0kVlZio_41jeK5Dvx9BgsiHP08f7Qc-diV21rq4COgODJh8SxB3ZKH7e82cBex7zOXxYQR2l0H7d1qzlhmHftZ5W7ocy3qnv_JiwfOVW7E9wQWqGrCgbmW9sMSp8lz5Eq7ccMI8-sO4j2vexJU50ewxgB&pr=6:0.092118]]></VASTAdTagURI>\n<Error><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&er=[ERRORCODE]&pfi=1&it=5&vadFmt=14&sURL=w3schools.com]]></Error>\n<Error><![CDATA[https://image8.pubmatic.com/AdServer/ImgSync?&fp=1&mpc=10&p=162545&gdpr=0&gdpr_consent=&pmc=-1&gpp=&gpp_sid=&gpmc=-1&pu=https%3A%2F%2Fimage4.pubmatic.com%2FAdServer%2FSPug%3Fpmc%3D-1%26gpmc%3D-1%26partnerID%3D162545%26partnerUID%3D%28null%29]]></Error>\n<Impression><![CDATA[https://st.pubmatic.com/AdServer/AdDisplayTrackerServlet?operId=1&pubId=162545&siteId=1279611&adId=6297588&imprId=5781A3D4-6FF5-4DED-963D-5C048A89B697&cksum=1C734843F25234B2&adType=23&adServerId=243&kefact=0.092680&kaxefact=0.092680&kadNetFrequecy=0&kadwidth=0&kadheight=0&kadsizeid=97&kltstamp=1786007944&indirectAdId=0&adServerOptimizerId=2&ranreq=0.1&kpbmtpfact=0.092118&dcId=3&tldId=0&passback=0&svr=BIDAMS0298&adsver=_2074401548&adsabzcid=0&cls=BID&i0=0x2100000000000000&i1=0x41102100&i2=0x11&ekefact=iFF0ahmPDACmoAO7ruUTw8ly0TrJkCQOAcj-E4WErCGzpTsG&ekaxefact=iFF0ah-PDADSF5vcUZ2GLiDyzZQyDPO0Lu7IPnIEkOcgFKi_&ekpbmtpfact=iFF0aiSPDAAPoW9L_iJgRx07hlng7VblJd2Q4rDDIETvu7oD&enpp=iFF0aimPDAAEHn4i09z13b0tolFPg_Ki9ZjLLFKLnN3UX1Io&papr_v2=0.500000&ud_sp_v2=iFF0ai6PDAAlJgD1II3xQ5o_46z9GSdrJweILxjdVnR-cckd&ud_b2p=iFF0ajKPDABfwN4xtozaPuPS6ZHWuUY4knOsy5XU2hRCd9CG&paprT=1&pmr_m=iFF0ajePDABFkQ3apwRde2ysU2rQ45bd0wO56zFhWcNCkGMD&mdsp=iFF0ajyPDAAD3PcaRiepfGUqlk77nuD_Q_xCsUFipwOZOOTA&epac=iFF0akKPDAD61fQMvT_M7csK_eQFbrtb-YxQaiHAVhD7WYD-&pact=6&pfi=1&domId=11277681788446617872&dc=AMS&pubBuyId=2957&crID=715486388&lpu=chase.com&ucrid=9490067801504416871&wAdType=13&campaignId=22987&creativeId=0&pctr=0.000000&wDSPByrId=233041&wDspId=80&wbId=1&wrId=5023136&wAdvID=25055&wDspCampId=23912551610&isRTB=1&rtbId=56F653EE-19F3-4DB6-B9BE-92CD77972EB4M&ver=44&dateHr=2026080609&usrgen=0&usryob=0&layeringebl=1&usrip=103.169.83.234&gctry=in&greg=ts&uid=0&mid=0&vph=250&wccookied=0&qpsladszid=681&schn=D3727232899457D3&cbm=268435456&oid=5781A3D4-6FF5-4DED-963D-5C048A89B697&country=IN&cntryId=107&sec=1&pAuSt=2&wops=0&sURL=w3schools.com&BrID=2&oiabdvt=2&expr=515:0:0:1&te=1&tpb=0]]></Impression>\n<Impression><![CDATA[https://image8.pubmatic.com/AdServer/ImgSync?&fp=1&mpc=10&p=162545&gdpr=0&gdpr_consent=&pmc=-1&gpp=&gpp_sid=&gpmc=-1&pu=https%3A%2F%2Fimage4.pubmatic.com%2FAdServer%2FSPug%3Fpmc%3D-1%26gpmc%3D-1%26partnerID%3D162545%26partnerUID%3D%28null%29]]></Impression>\n<Creatives>\n<Creative>\n<Linear>\n<TrackingEvents>\n<Tracking event=\"creativeView\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=1]]></Tracking>\n<Tracking event=\"start\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=2&pfi=1&vps=1&it=5&vadFmt=14&sURL=w3schools.com]]></Tracking>\n<Tracking event=\"midpoint\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=3&pfi=1&vps=1&sURL=w3schools.com]]></Tracking>\n<Tracking event=\"firstQuartile\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=4&pfi=1&vps=1&sURL=w3schools.com]]></Tracking>\n<Tracking event=\"thirdQuartile\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=5&pfi=1&vps=1&sURL=w3schools.com]]></Tracking>\n<Tracking event=\"complete\"><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=6&pfi=1&vps=1&sURL=w3schools.com]]></Tracking>\n</TrackingEvents>\n<VideoClicks>\n<ClickTracking><![CDATA[https://st.pubmatic.com/track?operId=7&p=162545&s=1279611&a=6297588&wa=243&adType=23&ts=1786007944&wc=22987&crId=715486388&ucrid=9490067801504416871&impid=5781A3D4-6FF5-4DED-963D-5C048A89B697&advertiser_id=25055&ecpm=0.092680&papr=2&mkid=25403&pbyId=2957&plmt=2&abzcid=0&gcoid=107&ch=3&ibv=1&e=99]]></ClickTracking>\n</VideoClicks>\n</Linear>\n</Creative>\n</Creatives>\n<Extensions>\n<Extension>\n<Meta><![CDATA[name=pm-forcepixel;ver=1.0]]></Meta>\n<Pixel loc=\"0\">\n<Code type=\"1\"><![CDATA[https://ads.pubmatic.com/AdServer/js/showad.js#PIX&ptask=DSP&SPug=1&fp=1&mpc=10&u=&p=162545&s=1279611&d=3&cp=0&sc=1&rs=0&os=0&gdpr=0&gdpr_consent=&gpp=&gpp_sid=]]></Code>\n</Pixel>\n</Extension>\n</Extensions>\n</Wrapper>\n</Ad>\n</VAST>\n";</script><script src="render_data/vastRenderer_v3_s83t.js"></script></span><!-- PubMatic Ad Ends -->
+    
+    <script>
+
+    const iframes = document.querySelectorAll('iframe');
+    for (let i = 0; i < iframes.length; i++) {
+      const iframe = iframes[i];
+      if (parseInt(iframe.width, 10)  >300 || parseInt(iframe.height, 10)  >250) {
+        iframe.style.width = "300px";
+        iframe.style.height = "250px";
+      }
+    }
+    </script>
+
+</body></html>

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "aurg_outreturn.c",
+    "type": "file"
+  },
+  {
+    "name": "aurg_return.c",
+    "type": "file"
+  },
+  {
+    "name": "outaurg_outreturn.c",
+    "type": "file"
+  },
+  {
+    "name": "outaurg_return.c",
+    "type": "file"
+  }
+]

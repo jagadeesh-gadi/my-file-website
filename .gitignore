@@ -1,15 +1,10 @@
 node_modules/
-
-# Local files - 105 MB
-files/
-
-# Compiled C files
+*.log
 *.o
 *.out
 *.swp
 *.swo
 
-# Common generated executables
 a.out
 program
 depth
@@ -22,8 +17,4 @@ hi
 hiii
 malloc
 
-# OS files
 .DS_Store
-
-# Logs
-*.log

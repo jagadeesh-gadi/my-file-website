@@ -1,0 +1,50 @@
+[
+  {
+    "name": "ARM ARCH",
+    "type": "folder"
+  },
+  {
+    "name": "C",
+    "type": "folder"
+  },
+  {
+    "name": "DL",
+    "type": "folder"
+  },
+  {
+    "name": "Embedded System",
+    "type": "folder"
+  },
+  {
+    "name": "Abouts_boards.pdf",
+    "type": "file"
+  },
+  {
+    "name": "basics program pdf.odt",
+    "type": "file"
+  },
+  {
+    "name": "communication_protocols\\.pdf",
+    "type": "file"
+  },
+  {
+    "name": "COMPUTER ORGANIZATION AND ARCHITECTURE.pdf",
+    "type": "file"
+  },
+  {
+    "name": "Memory",
+    "type": "file"
+  },
+  {
+    "name": "MICROCONTROLLER AND MICROPROCESSER",
+    "type": "file"
+  },
+  {
+    "name": "pindiagram8051.png",
+    "type": "file"
+  },
+  {
+    "name": "Screenshot from 2026-07-02 18-36-12.png",
+    "type": "file"
+  }
+]

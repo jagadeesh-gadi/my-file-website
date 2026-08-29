@@ -1,0 +1,42 @@
+[
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "my_strchar.c",
+    "type": "file"
+  },
+  {
+    "name": "my_strcompare.c",
+    "type": "file"
+  },
+  {
+    "name": "my_strcopy.c",
+    "type": "file"
+  },
+  {
+    "name": "my_stringconcat.c",
+    "type": "file"
+  },
+  {
+    "name": "my_stringnconcat.c",
+    "type": "file"
+  },
+  {
+    "name": "my_strlength.c",
+    "type": "file"
+  },
+  {
+    "name": "my_strncopy.c",
+    "type": "file"
+  },
+  {
+    "name": "my_strrchar.c",
+    "type": "file"
+  },
+  {
+    "name": "my_substr.c",
+    "type": "file"
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "name": "function_pointer",
+    "type": "folder"
+  },
+  {
+    "name": "inline_functions",
+    "type": "folder"
+  },
+  {
+    "name": "recursive_functions",
+    "type": "folder"
+  },
+  {
+    "name": "storage_classes",
+    "type": "folder"
+  },
+  {
+    "name": "Tasks",
+    "type": "folder"
+  },
+  {
+    "name": "types",
+    "type": "folder"
+  },
+  {
+    "name": "a.out",
+    "type": "file"
+  },
+  {
+    "name": "basic_function.c",
+    "type": "file"
+  },
+  {
+    "name": "bitwise.c",
+    "type": "file"
+  },
+  {
+    "name": "Bitwise.h",
+    "type": "file"
+  },
+  {
+    "name": "count_setbit.c",
+    "type": "file"
+  },
+  {
+    "name": "even_odd_swap.c",
+    "type": "file"
+  },
+  {
+    "name": "even_odd.c",
+    "type": "file"
+  },
+  {
+    "name": "factorail.c",
+    "type": "file"
+  },
+  {
+    "name": "fibnoic_series.c",
+    "type": "file"
+  },
+  {
+    "name": "gcd.c",
+    "type": "file"
+  },
+  {
+    "name": "increment_var.c",
+    "type": "file"
+  },
+  {
+    "name": "NO_arguments_return.c",
+    "type": "file"
+  },
+  {
+    "name": "prime.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse_bitwise.c",
+    "type": "file"
+  },
+  {
+    "name": "reverse.c",
+    "type": "file"
+  },
+  {
+    "name": "second_largest.c",
+    "type": "file"
+  },
+  {
+    "name": "setbit_final.c",
+    "type": "file"
+  },
+  {
+    "name": "sum_of_digits.c",
+    "type": "file"
+  },
+  {
+    "name": "swap_temp.c",
+    "type": "file"
+  },
+  {
+    "name": "swap_var.c",
+    "type": "file"
+  },
+  {
+    "name": "twin_prime.c",
+    "type": "file"
+  },
+  {
+    "name": "uisng_pointer_swap.c",
+    "type": "file"
+  },
+  {
+    "name": "using_pointer_increment.c",
+    "type": "file"
+  },
+  {
+    "name": "with_arguments_No_return.c",
+    "type": "file"
+  }
+]
