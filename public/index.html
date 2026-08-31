@@ -1,73 +1,192 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>My C Files</title>
+<meta
+    name="description"
+    content="Browse C programming files, embedded systems resources, STM32 documents, books, programs and study materials."
+>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<title>My C Programming Files</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
 
 </head>
 
 <body>
 
-    <header>
+```
+<!-- ================= HEADER ================= -->
 
-        <h1>📚 My C Programming Files</h1>
+<header class="site-header">
 
-        <p>
-            Browse my C programs and folders
-        </p>
+    <div class="header-content">
 
-    </header>
+        <div class="brand">
 
+            <div class="brand-icon">
+                💻
+            </div>
 
-    <main>
+            <div>
 
-        <div class="toolbar">
+                <h1>
+                    My C Files
+                </h1>
 
-            <button
-                id="homeButton"
-            >
-                🏠 Home
-            </button>
+                <p>
+                    C Programming & Embedded Systems Resources
+                </p>
 
-            <span
-                id="currentPath"
-            >
-                /
-            </span>
+            </div>
 
         </div>
 
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+
+    <!-- ================= TOOLBAR ================= -->
+
+    <section class="toolbar">
+
+        <button
+            id="homeButton"
+            class="home-button"
+        >
+            🏠
+            <span>Home</span>
+        </button>
+
 
         <div
-            id="file-container"
-            class="file-container"
+            id="currentPath"
+            class="breadcrumb"
         >
+            /
+        </div>
 
-            <p>
-                Loading...
+
+        <div class="search-wrapper">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search files..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section class="page-heading">
+
+        <div>
+
+            <h2 id="folderTitle">
+                📁 Home
+            </h2>
+
+            <p id="folderDescription">
+                Browse your files and folders
             </p>
 
         </div>
 
-    </main>
+    </section>
 
 
-    <script
-        src="script.js"
-    ></script>
+    <!-- ================= FILE CONTAINER ================= -->
+
+    <section
+        id="file-container"
+        class="file-container"
+    >
+
+        <div class="loading">
+
+            <div class="loading-spinner"></div>
+
+            <p>
+                Loading files...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EMPTY MESSAGE ================= -->
+
+    <div
+        id="emptyMessage"
+        class="empty-message hidden"
+    >
+
+        <div class="empty-icon">
+            🔎
+        </div>
+
+        <h3>
+            No files found
+        </h3>
+
+        <p>
+            Try another search term.
+        </p>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+    <p>
+        My C Programming Files
+    </p>
+
+    <span>
+        C • Embedded Systems • STM32
+    </span>
+
+</footer>
+
+
+<script
+    src="script.js"
+></script>
+```
 
 </body>
 
