@@ -1,232 +1,167 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="theme-color"
-        content="#1d4ed8"
-    >
+<meta
+    name="description"
+    content="C Programming and Embedded Systems Files"
+>
 
-    <title>My C Files</title>
+<title>My C Files</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
 
 </head>
 
-
 <body>
 
+```
+<!-- =================================================
+     HEADER
+================================================== -->
 
-    <!-- =================================================
-         HEADER
-    ================================================== -->
+<header class="site-header">
 
-    <header class="site-header">
+    <div class="header-content">
 
-        <div class="header-content">
+        <div class="brand">
 
-            <div class="brand">
-
-                <div class="brand-icon">
-                    💻
-                </div>
-
-                <div>
-
-                    <h1>
-                        My C Files
-                    </h1>
-
-                    <p>
-                        C Programming & Embedded Systems Resources
-                    </p>
-
-                </div>
-
+            <div class="brand-icon">
+                💻
             </div>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =================================================
-         MAIN
-    ================================================== -->
-
-    <main class="main-container">
-
-
-        <!-- TOOLBAR -->
-
-        <div class="toolbar">
-
-
-            <button
-                id="backButton"
-                class="toolbar-button"
-                title="Go back"
-            >
-                ←
-                <span>Back</span>
-            </button>
-
-
-            <button
-                id="homeButton"
-                class="toolbar-button home-button"
-                title="Go home"
-            >
-                🏠
-                <span>Home</span>
-            </button>
-
-
-            <div
-                id="currentPath"
-                class="breadcrumb"
-            >
-                /
-            </div>
-
-
-            <div class="search-wrapper">
-
-                <span class="search-icon">
-                    🔍
-                </span>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search files..."
-                    autocomplete="off"
-                >
-
-            </div>
-
-        </div>
-
-
-
-        <!-- PAGE HEADING -->
-
-        <div class="page-heading">
 
             <div>
 
-                <h2 id="folderTitle">
-                    📁 Home
-                </h2>
-
-                <p id="folderDescription">
-                    Browse your files and folders
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- FILES -->
-
-        <div
-            id="file-container"
-            class="file-container"
-        >
-
-            <div class="loading">
-
-                <div class="loading-spinner"></div>
+                <h1>
+                    My C Files
+                </h1>
 
                 <p>
-                    Loading files...
+                    C Programming &amp; Embedded Systems Resources
                 </p>
 
             </div>
 
         </div>
 
+    </div>
 
-    </main>
+</header>
+
+
+
+<!-- =================================================
+     MAIN
+================================================== -->
+
+<main class="main-container">
+
+
+    <!-- =================================================
+         TOOLBAR
+    ================================================== -->
+
+    <div class="toolbar">
+
+
+        <!-- HOME -->
+
+        <button
+            id="homeButton"
+            class="toolbar-button home-button"
+            type="button"
+        >
+
+            🏠
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+
+        <!-- BACK -->
+
+        <button
+            id="backButton"
+            class="toolbar-button"
+            type="button"
+        >
+
+            ←
+
+            <span>
+                Back
+            </span>
+
+        </button>
+
+
+
+        <!-- BREADCRUMB -->
+
+        <div
+            id="currentPath"
+            class="breadcrumb"
+        >
+            /
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="search-wrapper">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="Search files..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+    </div>
 
 
 
     <!-- =================================================
-         CODE VIEWER
+         PAGE HEADING
     ================================================== -->
 
-    <div
-        id="codeViewer"
-        class="viewer-overlay hidden"
-    >
+    <div class="page-heading">
 
-        <div class="viewer-window">
+        <div>
 
+            <h2 id="folderTitle">
+                📁 Home
+            </h2>
 
-            <div class="viewer-header">
-
-
-                <div class="viewer-title">
-
-                    <span id="codeIcon">
-                        💻
-                    </span>
-
-                    <span id="codeFileName">
-                        Code
-                    </span>
-
-                </div>
-
-
-                <div class="viewer-actions">
-
-                    <button
-                        id="downloadCode"
-                        title="Download"
-                    >
-                        ⬇️
-                    </button>
-
-                    <button
-                        id="openCodeNewTab"
-                        title="Open in new tab"
-                    >
-                        ↗️
-                    </button>
-
-                    <button
-                        id="closeCode"
-                        title="Close"
-                    >
-                        ✕
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="code-body">
-
-                <pre><code id="codeContent"></code></pre>
-
-            </div>
-
+            <p id="folderDescription">
+                Browse your files and folders
+            </p>
 
         </div>
 
@@ -235,13 +170,168 @@
 
 
     <!-- =================================================
-         SCRIPT
+         FILE CONTAINER
     ================================================== -->
 
-    <script
-        src="script.js"
-    ></script>
+    <div
+        id="file-container"
+        class="file-container"
+    >
 
+        <div class="loading">
+
+            <div class="loading-spinner"></div>
+
+            <p>
+                Loading files...
+            </p>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =================================================
+     FOOTER
+================================================== -->
+
+<footer class="site-footer">
+
+    <p>
+        💻 My C Programming Files
+    </p>
+
+    <span>
+        C Programming • Embedded Systems • STM32
+    </span>
+
+</footer>
+
+
+
+<!-- =================================================
+     VIEWER OVERLAY
+================================================== -->
+
+<div
+    id="viewerOverlay"
+    class="viewer-overlay hidden"
+>
+
+
+    <div class="viewer-window">
+
+
+        <!-- =================================================
+             VIEWER HEADER
+        ================================================== -->
+
+        <div class="viewer-header">
+
+
+            <div class="viewer-title">
+
+                <span id="viewerIcon">
+                    📄
+                </span>
+
+                <span id="viewerTitle">
+                    File Viewer
+                </span>
+
+            </div>
+
+
+
+            <div class="viewer-actions">
+
+
+                <!-- DOWNLOAD -->
+
+                <button
+                    id="downloadButton"
+                    type="button"
+                    title="Download"
+                >
+                    ⬇️
+                </button>
+
+
+
+                <!-- NEW TAB -->
+
+                <button
+                    id="newTabButton"
+                    type="button"
+                    title="Open in new tab"
+                >
+                    ↗️
+                </button>
+
+
+
+                <!-- CLOSE -->
+
+                <button
+                    id="closeViewerButton"
+                    type="button"
+                    title="Close"
+                >
+                    ✕
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             CODE VIEWER
+        ================================================== -->
+
+        <div
+            id="codeViewer"
+            class="code-body hidden"
+        >
+
+            <pre><code id="codeContent"></code></pre>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PDF VIEWER
+        ================================================== -->
+
+        <iframe
+            id="pdfViewer"
+            class="pdf-viewer hidden"
+            title="PDF Viewer"
+        >
+        </iframe>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+================================================== -->
+
+<script src="script.js"></script>
+```
 
 </body>
 

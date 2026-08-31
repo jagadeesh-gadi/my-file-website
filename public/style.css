@@ -1,13 +1,152 @@
 /* =====================================================
+   GLOBAL RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #000000;
+    color: #ffffff;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.site-header {
+    background: #000000;
+
+    color: white;
+
+    padding: 28px 20px;
+
+    border-bottom: 1px solid #222222;
+}
+
+.header-content {
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+.brand-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #111111;
+
+    border: 1px solid #333333;
+
+    border-radius: 15px;
+
+    font-size: 28px;
+}
+
+.brand h1 {
+    font-size: 26px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.brand p {
+    margin-top: 4px;
+
+    font-size: 14px;
+
+    color: #aaaaaa;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main-container {
+    width: min(
+        1200px,
+        calc(100% - 32px)
+    );
+
+    margin: 28px auto 50px;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar {
+    position: sticky;
+
+    top: 10px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    margin-bottom: 28px;
+
+    background: #0b0b0b;
+
+    border: 1px solid #292929;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =====================================================
    TOOLBAR BUTTONS
 ===================================================== */
 
 .toolbar-button {
-    border: none;
+    border: 1px solid #333333;
 
-    background: #f1f5f9;
+    background: #151515;
 
-    color: #1e293b;
+    color: #ffffff;
 
     padding: 10px 14px;
 
@@ -29,19 +168,399 @@
 }
 
 .toolbar-button:hover {
-    background: #e2e8f0;
+    background: #222222;
+
+    border-color: #555555;
 
     transform: translateY(-1px);
 }
 
 .home-button {
-    background: #1d4ed8;
+    background: #2563eb;
 
     color: white;
+
+    border-color: #2563eb;
 }
 
 .home-button:hover {
-    background: #1e40af;
+    background: #1d4ed8;
+}
+
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.breadcrumb {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color: #aaaaaa;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-wrapper {
+    width: 280px;
+
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    border: 1px solid #333333;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #111111;
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.search-wrapper input::placeholder {
+    color: #777777;
+}
+
+.search-wrapper input:focus {
+    border-color: #555555;
+
+    background: #151515;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+
+/* =====================================================
+   PAGE HEADING
+===================================================== */
+
+.page-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.page-heading h2 {
+    font-size: 23px;
+
+    color: #ffffff;
+}
+
+.page-heading p {
+    margin-top: 5px;
+
+    color: #888888;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FILE CONTAINER
+===================================================== */
+
+.file-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(240px, 1fr)
+        );
+
+    gap: 16px;
+}
+
+
+/* =====================================================
+   FILE CARD
+===================================================== */
+
+.file-card {
+    background: #0d0d0d;
+
+    border: 1px solid #292929;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    min-height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.file-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #444444;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+}
+
+.file-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #181818;
+
+    border: 1px solid #303030;
+
+    font-size: 23px;
+}
+
+.file-info {
+    min-width: 0;
+}
+
+.file-name {
+    font-size: 15px;
+
+    font-weight: 650;
+
+    color: #ffffff;
+
+    word-break: break-word;
+
+    line-height: 1.4;
+}
+
+.file-type {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #888888;
+}
+
+
+/* =====================================================
+   CARD BOTTOM
+===================================================== */
+
+.card-bottom {
+    margin-top: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+.file-size {
+    font-size: 12px;
+
+    color: #777777;
+}
+
+.open-button {
+    text-decoration: none;
+
+    background: #181818;
+
+    color: #60a5fa;
+
+    border: 1px solid #333333;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.open-button:hover {
+    background: #222222;
+
+    color: #93c5fd;
+}
+
+
+/* =====================================================
+   FOLDER
+===================================================== */
+
+.folder-card {
+    cursor: pointer;
+}
+
+.folder-card .file-icon {
+    background: #181818;
+}
+
+.folder-card .file-type {
+    color: #f59e0b;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading {
+    grid-column: 1 / -1;
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #888888;
+}
+
+.loading-spinner {
+    width: 38px;
+    height: 38px;
+
+    border: 4px solid #292929;
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+
+    margin-bottom: 14px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-message {
+    text-align: center;
+
+    padding: 70px 20px;
+
+    color: #777777;
+}
+
+.empty-icon {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+.empty-message h3 {
+    color: #ffffff;
+
+    margin-bottom: 5px;
+}
+
+
+/* =====================================================
+   HIDDEN
+===================================================== */
+
+.hidden {
+    display: none;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.site-footer {
+    text-align: center;
+
+    padding: 25px 15px 35px;
+
+    color: #777777;
+
+    font-size: 13px;
+
+    border-top: 1px solid #1f1f1f;
+}
+
+.site-footer span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #555555;
 }
 
 
@@ -56,7 +575,7 @@
 
     z-index: 1000;
 
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(0, 0, 0, 0.92);
 
     display: flex;
 
@@ -66,7 +585,7 @@
 
     padding: 20px;
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
 }
 
 .viewer-overlay.hidden {
@@ -75,7 +594,7 @@
 
 
 /* =====================================================
-   CODE WINDOW
+   CODE / PDF WINDOW
 ===================================================== */
 
 .viewer-window {
@@ -83,14 +602,16 @@
 
     height: min(850px, 92vh);
 
-    background: #0f172a;
+    background: #000000;
+
+    border: 1px solid #333333;
 
     border-radius: 16px;
 
     overflow: hidden;
 
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.35);
+        0 25px 80px rgba(0, 0, 0, 0.8);
 
     display: flex;
 
@@ -107,7 +628,9 @@
 
     padding: 10px 14px;
 
-    background: #1e293b;
+    background: #111111;
+
+    border-bottom: 1px solid #292929;
 
     color: white;
 
@@ -153,11 +676,11 @@
 
     height: 38px;
 
-    border: none;
+    border: 1px solid #333333;
 
     border-radius: 8px;
 
-    background: #334155;
+    background: #1a1a1a;
 
     color: white;
 
@@ -167,7 +690,7 @@
 }
 
 .viewer-actions button:hover {
-    background: #475569;
+    background: #292929;
 }
 
 
@@ -180,7 +703,7 @@
 
     overflow: auto;
 
-    background: #0f172a;
+    background: #000000;
 }
 
 .code-body pre {
@@ -203,7 +726,7 @@
 
     line-height: 1.65;
 
-    color: #e2e8f0;
+    color: #e5e7eb;
 
     white-space: pre;
 }
@@ -220,18 +743,108 @@
 
     border: none;
 
-    background: white;
+    background: #000000;
 }
 
 
 /* =====================================================
-   MOBILE VIEWER
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333333;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .toolbar {
+        flex-wrap: wrap;
+    }
+
+    .breadcrumb {
+        order: 2;
+
+        flex-basis: calc(100% - 90px);
+    }
+
+    .search-wrapper {
+        order: 3;
+
+        width: 100%;
+    }
+
+    .file-container {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+}
+
+
+/* =====================================================
+   MOBILE SMALL
 ===================================================== */
 
 @media (max-width: 520px) {
 
+    .site-header {
+        padding: 20px 15px;
+    }
+
+    .brand {
+        gap: 11px;
+    }
+
+    .brand-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 22px;
+    }
+
+    .brand h1 {
+        font-size: 20px;
+    }
+
+    .brand p {
+        font-size: 12px;
+    }
+
+    .main-container {
+        width: calc(100% - 20px);
+
+        margin-top: 15px;
+    }
+
     .toolbar {
-        gap: 7px;
+        top: 5px;
+
+        padding: 9px;
+
+        border-radius: 13px;
     }
 
     .toolbar-button {
@@ -241,6 +854,27 @@
     .toolbar-button span {
         display: none;
     }
+
+    .page-heading h2 {
+        font-size: 20px;
+    }
+
+    .file-container {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .file-card {
+        min-height: 130px;
+
+        padding: 15px;
+    }
+
+
+    /* ================================
+       MOBILE VIEWER
+    ================================ */
 
     .viewer-overlay {
         padding: 0;
@@ -252,10 +886,24 @@
         height: 100%;
 
         border-radius: 0;
+
+        border: none;
     }
 
     .viewer-header {
         min-height: 54px;
+
+        padding: 8px 10px;
+    }
+
+    .viewer-title span:last-child {
+        font-size: 13px;
+    }
+
+    .viewer-actions button {
+        width: 35px;
+
+        height: 35px;
     }
 
     .code-body pre {
@@ -267,10 +915,28 @@
 
         line-height: 1.6;
     }
+}
 
-    .viewer-actions button {
-        width: 35px;
 
-        height: 35px;
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .brand h1 {
+        font-size: 18px;
+    }
+
+    .brand p {
+        font-size: 11px;
+    }
+
+    .file-card {
+        padding: 13px;
+    }
+
+    .code-body code {
+        font-size: 12px;
     }
 }
