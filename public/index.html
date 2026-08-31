@@ -4,7 +4,7 @@
 
 <head>
 
-```
+
 <meta charset="UTF-8">
 
 <meta
@@ -14,7 +14,7 @@
 
 <meta
     name="description"
-    content="C Programming and Embedded Systems Files"
+    content="C Programming and Embedded Systems Resources"
 >
 
 <title>My C Files</title>
@@ -23,16 +23,15 @@
     rel="stylesheet"
     href="style.css"
 >
-```
+
 
 </head>
 
 <body>
 
-```
-<!-- =================================================
+<!-- =====================================================
      HEADER
-================================================== -->
+====================================================== -->
 
 <header class="site-header">
 
@@ -51,7 +50,7 @@
                 </h1>
 
                 <p>
-                    C Programming &amp; Embedded Systems Resources
+                    C Programming & Embedded Systems Resources
                 </p>
 
             </div>
@@ -63,10 +62,9 @@
 </header>
 
 
-
-<!-- =================================================
+<!-- =====================================================
      MAIN
-================================================== -->
+====================================================== -->
 
 <main class="main-container">
 
@@ -77,44 +75,25 @@
 
     <div class="toolbar">
 
-
-        <!-- HOME -->
-
         <button
             id="homeButton"
             class="toolbar-button home-button"
             type="button"
         >
-
             🏠
-
-            <span>
-                Home
-            </span>
-
+            <span>Home</span>
         </button>
 
-
-
-        <!-- BACK -->
 
         <button
             id="backButton"
             class="toolbar-button"
             type="button"
         >
-
             ←
-
-            <span>
-                Back
-            </span>
-
+            <span>Back</span>
         </button>
 
-
-
-        <!-- BREADCRUMB -->
 
         <div
             id="currentPath"
@@ -123,9 +102,6 @@
             /
         </div>
 
-
-
-        <!-- SEARCH -->
 
         <div class="search-wrapper">
 
@@ -142,13 +118,11 @@
 
         </div>
 
-
     </div>
 
 
-
     <!-- =================================================
-         PAGE HEADING
+         FOLDER HEADER
     ================================================== -->
 
     <div class="page-heading">
@@ -168,7 +142,6 @@
     </div>
 
 
-
     <!-- =================================================
          FILE CONTAINER
     ================================================== -->
@@ -183,7 +156,7 @@
             <div class="loading-spinner"></div>
 
             <p>
-                Loading files...
+                Loading...
             </p>
 
         </div>
@@ -194,15 +167,99 @@
 </main>
 
 
+<!-- =====================================================
+     CODE VIEWER
+====================================================== -->
 
-<!-- =================================================
+<div
+    id="codeViewer"
+    class="viewer-overlay hidden"
+>
+
+<div class="viewer-window">
+
+    <div class="viewer-header">
+
+        <div class="viewer-title">
+
+            <span>💻</span>
+
+            <span id="codeFileName">
+                Code
+            </span>
+
+        </div>
+
+
+        <div class="viewer-actions">
+
+            <button
+                id="downloadCode"
+                type="button"
+                title="Download"
+            >
+                ⬇️
+            </button>
+
+
+            <button
+                id="openCodeNewTab"
+                type="button"
+                title="Open in new tab"
+            >
+                ↗
+            </button>
+
+
+            <button
+                id="closeCode"
+                type="button"
+                title="Close"
+            >
+                ✕
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="code-body">
+
+        <pre><code id="codeContent"></code></pre>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+        <!-- =============================================
+             CODE BODY
+        ============================================== -->
+
+        <div class="code-body">
+
+            <pre><code id="codeContent"></code></pre>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      FOOTER
-================================================== -->
+====================================================== -->
 
 <footer class="site-footer">
 
     <p>
-        💻 My C Programming Files
+        My C Programming Files
     </p>
 
     <span>
@@ -212,126 +269,13 @@
 </footer>
 
 
-
-<!-- =================================================
-     VIEWER OVERLAY
-================================================== -->
-
-<div
-    id="viewerOverlay"
-    class="viewer-overlay hidden"
->
-
-
-    <div class="viewer-window">
-
-
-        <!-- =================================================
-             VIEWER HEADER
-        ================================================== -->
-
-        <div class="viewer-header">
-
-
-            <div class="viewer-title">
-
-                <span id="viewerIcon">
-                    📄
-                </span>
-
-                <span id="viewerTitle">
-                    File Viewer
-                </span>
-
-            </div>
-
-
-
-            <div class="viewer-actions">
-
-
-                <!-- DOWNLOAD -->
-
-                <button
-                    id="downloadButton"
-                    type="button"
-                    title="Download"
-                >
-                    ⬇️
-                </button>
-
-
-
-                <!-- NEW TAB -->
-
-                <button
-                    id="newTabButton"
-                    type="button"
-                    title="Open in new tab"
-                >
-                    ↗️
-                </button>
-
-
-
-                <!-- CLOSE -->
-
-                <button
-                    id="closeViewerButton"
-                    type="button"
-                    title="Close"
-                >
-                    ✕
-                </button>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             CODE VIEWER
-        ================================================== -->
-
-        <div
-            id="codeViewer"
-            class="code-body hidden"
-        >
-
-            <pre><code id="codeContent"></code></pre>
-
-        </div>
-
-
-
-        <!-- =================================================
-             PDF VIEWER
-        ================================================== -->
-
-        <iframe
-            id="pdfViewer"
-            class="pdf-viewer hidden"
-            title="PDF Viewer"
-        >
-        </iframe>
-
-
-    </div>
-
-
-</div>
-
-
-
-<!-- =================================================
+<!-- =====================================================
      JAVASCRIPT
-================================================== -->
+====================================================== -->
 
-<script src="script.js"></script>
-```
+<script
+    src="script.js"
+></script>
 
 </body>
 
