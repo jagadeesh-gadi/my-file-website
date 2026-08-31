@@ -2,19 +2,15 @@ const ROOT_FOLDER = "files";
 
 const container = document.getElementById("file-container");
 const currentPathElement = document.getElementById("currentPath");
-
 const homeButton = document.getElementById("homeButton");
 const backButton = document.getElementById("backButton");
-
 const searchInput = document.getElementById("searchInput");
-
 const folderTitle = document.getElementById("folderTitle");
 const folderDescription = document.getElementById("folderDescription");
 
 const codeViewer = document.getElementById("codeViewer");
 const codeContent = document.getElementById("codeContent");
 const codeFileName = document.getElementById("codeFileName");
-
 const closeCode = document.getElementById("closeCode");
 const downloadCode = document.getElementById("downloadCode");
 const openCodeNewTab = document.getElementById("openCodeNewTab");
@@ -24,10 +20,6 @@ let currentItems = [];
 let currentFileUrl = "";
 
 const cache = new Map();
-
-/* =====================================================
-ENCODE PATH
-===================================================== */
 
 function encodePath(path) {
 
@@ -40,10 +32,6 @@ return path
 //
 
 }
-
-/* =====================================================
-GET INDEX URL
-===================================================== */
 
 function getIndexUrl(folder) {
 
@@ -59,10 +47,6 @@ return "/" + ROOT_FOLDER + "/index.json";
 
 }
 
-/* =====================================================
-GET FILE URL
-===================================================== */
-
 function getFileUrl(folder, name) {
 
 //
@@ -74,10 +58,6 @@ return "/" + ROOT_FOLDER + "/" + encodePath(path);
 //
 
 }
-
-/* =====================================================
-ICON
-===================================================== */
 
 function getIcon(name, type) {
 
@@ -91,6 +71,7 @@ const lower = name.toLowerCase();
 if (lower.endsWith(".c")) return "💻";
 if (lower.endsWith(".h")) return "🔧";
 if (lower.endsWith(".cpp")) return "⚙️";
+if (lower.endsWith(".cc")) return "⚙️";
 if (lower.endsWith(".java")) return "☕";
 if (lower.endsWith(".py")) return "🐍";
 if (lower.endsWith(".js")) return "🟨";
@@ -102,16 +83,13 @@ if (lower.endsWith(".json")) return "📋";
 if (lower.endsWith(".png")) return "🖼️";
 if (lower.endsWith(".jpg")) return "🖼️";
 if (lower.endsWith(".jpeg")) return "🖼️";
+if (lower.endsWith(".webp")) return "🖼️";
 if (lower.endsWith(".zip")) return "🗜️";
 
 return "📄";
 //
 
 }
-
-/* =====================================================
-FILE TYPE
-===================================================== */
 
 function getType(name, type) {
 
@@ -130,10 +108,6 @@ return parts.pop().toUpperCase() + " File";
 //
 
 }
-
-/* =====================================================
-SIZE
-===================================================== */
 
 function formatSize(size) {
 
@@ -154,10 +128,6 @@ return (size / (1024 * 1024)).toFixed(1) + " MB";
 //
 
 }
-
-/* =====================================================
-CODE FILE?
-===================================================== */
 
 function isCodeFile(name) {
 
@@ -182,32 +152,39 @@ return (
 
 }
 
-/* =====================================================
-PDF?
-===================================================== */
-
 function isPdf(name) {
 
 //
-return name.toLowerCase().endsWith(".pdf");
+return name
+    .toLowerCase()
+    .endsWith(".pdf");
 //
 
 }
 
-/* =====================================================
-LOAD FOLDER
-===================================================== */
+function showLoading() {
+
+//
+container.innerHTML = `
+    <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+`;
+//
+
+}
 
 async function loadFolder(folder = "") {
 
 //
 currentFolder = folder;
 
-searchInput.value = "";
+if (searchInput) {
+    searchInput.value = "";
+}
 
 updateHeader(folder);
-
-/* CACHE */
 
 if (cache.has(folder)) {
 
@@ -221,50 +198,42 @@ if (cache.has(folder)) {
     return;
 }
 
-
-/* LOADING */
-
-container.innerHTML = `
-    <div class="loading">
-        <div class="loading-spinner"></div>
-        <p>Loading...</p>
-    </div>
-`;
-
+showLoading();
 
 const url = getIndexUrl(folder);
 
 console.log("Loading:", url);
 
-
 try {
 
-    const response = await fetch(url, {
-        cache: "default"
-    });
-
+    const response = await fetch(
+        url,
+        {
+            cache: "force-cache"
+        }
+    );
 
     if (!response.ok) {
 
         throw new Error(
             "HTTP " + response.status
         );
-    }
 
+    }
 
     const data = await response.json();
 
-
-    cache.set(folder, data);
+    cache.set(
+        folder,
+        data
+    );
 
     currentItems = data;
-
 
     displayFiles(
         data,
         folder
     );
-
 
 } catch (error) {
 
@@ -272,7 +241,6 @@ try {
         "Folder loading error:",
         error
     );
-
 
     container.innerHTML = `
         <div class="empty-message">
@@ -286,33 +254,44 @@ try {
             </h3>
 
             <p>
-                ${error.message}
+                ${escapeHtml(error.message)}
             </p>
 
             <button
                 class="retry-button"
                 type="button"
-                onclick="loadFolder(currentFolder)">
+                id="retryButton"
+            >
                 🔄 Retry
             </button>
 
         </div>
     `;
+
+    const retryButton =
+        document.getElementById("retryButton");
+
+    if (retryButton) {
+
+        retryButton.addEventListener(
+            "click",
+            () => loadFolder(folder)
+        );
+
+    }
+
 }
 //
 
 }
-
-/* =====================================================
-HEADER
-===================================================== */
 
 function updateHeader(folder) {
 
 //
 currentPathElement.textContent =
-    "/" + folder;
-
+    folder
+        ? "/" + folder + "/"
+        : "/";
 
 if (!folder) {
 
@@ -325,37 +304,29 @@ if (!folder) {
     backButton.disabled = true;
 
     return;
-}
 
+}
 
 const parts =
     folder
         .split("/")
         .filter(Boolean);
 
-
 folderTitle.textContent =
     "📁 " + parts[parts.length - 1];
 
-
 folderDescription.textContent =
     "Browse files in this folder";
-
 
 backButton.disabled = false;
 //
 
 }
 
-/* =====================================================
-DISPLAY FILES
-===================================================== */
-
 function displayFiles(items, folder) {
 
 //
 container.innerHTML = "";
-
 
 if (!items || items.length === 0) {
 
@@ -378,33 +349,30 @@ if (!items || items.length === 0) {
     `;
 
     return;
-}
 
+}
 
 const fragment =
     document.createDocumentFragment();
 
-
-/* FOLDERS FIRST */
-
 const sorted =
     [...items].sort((a, b) => {
 
-        const typeA =
+        const folderA =
             a.type === "folder" ? 0 : 1;
 
-        const typeB =
+        const folderB =
             b.type === "folder" ? 0 : 1;
 
-        if (typeA !== typeB) {
-            return typeA - typeB;
+        if (folderA !== folderB) {
+            return folderA - folderB;
         }
 
         return a.name.localeCompare(
             b.name
         );
-    });
 
+    });
 
 sorted.forEach(item => {
 
@@ -413,10 +381,8 @@ sorted.forEach(item => {
             ? "folder"
             : "file";
 
-
     const card =
         document.createElement("div");
-
 
     card.className =
         "file-card " +
@@ -426,13 +392,11 @@ sorted.forEach(item => {
                 : ""
         );
 
-
     const icon =
         getIcon(
             item.name,
             type
         );
-
 
     const fileType =
         getType(
@@ -440,12 +404,10 @@ sorted.forEach(item => {
             type
         );
 
-
     const size =
         formatSize(
             item.size
         );
-
 
     card.innerHTML = `
         <div class="card-top">
@@ -468,7 +430,6 @@ sorted.forEach(item => {
 
         </div>
 
-
         <div class="card-bottom">
 
             <span class="file-size">
@@ -477,25 +438,22 @@ sorted.forEach(item => {
 
             <button
                 class="open-button"
-                type="button">
-
+                type="button"
+            >
                 ${
                     type === "folder"
                         ? "Open →"
                         : "Open ↗"
                 }
-
             </button>
 
         </div>
     `;
 
-
     const button =
         card.querySelector(
             ".open-button"
         );
-
 
     button.addEventListener(
         "click",
@@ -508,7 +466,6 @@ sorted.forEach(item => {
                         ? folder + "/" + item.name
                         : item.name;
 
-
                 loadFolder(
                     nextFolder
                 );
@@ -516,25 +473,20 @@ sorted.forEach(item => {
             } else {
 
                 openFile(item);
+
             }
 
         }
     );
 
-
     fragment.appendChild(card);
 
 });
-
 
 container.appendChild(fragment);
 //
 
 }
-
-/* =====================================================
-OPEN FILE
-===================================================== */
 
 function openFile(item) {
 
@@ -545,9 +497,6 @@ const url =
         item.name
     );
 
-
-/* CODE */
-
 if (isCodeFile(item.name)) {
 
     openCode(
@@ -556,23 +505,8 @@ if (isCodeFile(item.name)) {
     );
 
     return;
+
 }
-
-
-/* PDF */
-
-if (isPdf(item.name)) {
-
-    window.open(
-        url,
-        "_blank"
-    );
-
-    return;
-}
-
-
-/* OTHER FILE */
 
 window.open(
     url,
@@ -581,10 +515,6 @@ window.open(
 //
 
 }
-
-/* =====================================================
-CODE VIEWER
-===================================================== */
 
 async function openCode(
 url,
@@ -600,49 +530,45 @@ codeFileName.textContent =
 codeContent.textContent =
     "Loading...";
 
-
 codeViewer.classList.remove(
     "hidden"
 );
 
-
 try {
 
     const response =
-        await fetch(url);
-
+        await fetch(
+            url,
+            {
+                cache: "force-cache"
+            }
+        );
 
     if (!response.ok) {
 
         throw new Error(
             "HTTP " + response.status
         );
-    }
 
+    }
 
     const text =
         await response.text();
 
-
     codeContent.textContent =
         text;
 
-
 } catch (error) {
+
+    console.error(error);
 
     codeContent.textContent =
         "Unable to load code file.";
 
-
-    console.error(error);
 }
 //
 
 }
-
-/* =====================================================
-CLOSE VIEWER
-===================================================== */
 
 function closeViewer() {
 
@@ -658,96 +584,91 @@ currentFileUrl = "";
 
 }
 
-/* =====================================================
-DOWNLOAD
-===================================================== */
+if (downloadCode) {
 
+//
 downloadCode.addEventListener(
-"click",
-() => {
+    "click",
+    () => {
 
-//
-    if (!currentFileUrl) {
-        return;
+        if (!currentFileUrl) {
+            return;
+        }
+
+        const link =
+            document.createElement("a");
+
+        link.href =
+            currentFileUrl;
+
+        link.download =
+            codeFileName.textContent;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
     }
-
-
-    const link =
-        document.createElement("a");
-
-
-    link.href =
-        currentFileUrl;
-
-
-    link.download =
-        codeFileName.textContent;
-
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    link.remove();
-}
+);
 //
 
-);
+}
 
-/* =====================================================
-NEW TAB
-===================================================== */
+if (openCodeNewTab) {
 
+//
 openCodeNewTab.addEventListener(
-"click",
-() => {
+    "click",
+    () => {
 
-//
-    if (!currentFileUrl) {
-        return;
+        if (!currentFileUrl) {
+            return;
+        }
+
+        window.open(
+            currentFileUrl,
+            "_blank"
+        );
+
     }
-
-
-    window.open(
-        currentFileUrl,
-        "_blank"
-    );
-}
+);
 //
 
-);
+}
 
-/* =====================================================
-CLOSE BUTTON
-===================================================== */
+if (closeCode) {
 
+//
 closeCode.addEventListener(
-"click",
-closeViewer
+    "click",
+    closeViewer
 );
-
-/* =====================================================
-CLICK OUTSIDE
-===================================================== */
-
-codeViewer.addEventListener(
-"click",
-event => {
-
 //
-    if (
-        event.target === codeViewer
-    ) {
-        closeViewer();
-    }
+
 }
+
+if (codeViewer) {
+
+//
+codeViewer.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === codeViewer
+        ) {
+
+            closeViewer();
+
+        }
+
+    }
+);
 //
 
-);
-
-/* =====================================================
-ESC
-===================================================== */
+}
 
 document.addEventListener(
 "keydown",
@@ -757,106 +678,100 @@ event => {
     if (
         event.key === "Escape"
     ) {
+
         closeViewer();
+
     }
+
 }
 //
 
 );
 
-/* =====================================================
-HOME
-===================================================== */
+if (homeButton) {
 
+//
 homeButton.addEventListener(
-"click",
-() => {
+    "click",
+    () => {
 
-//
-    loadFolder("");
-}
-//
+        loadFolder("");
 
-);
-
-/* =====================================================
-BACK
-===================================================== */
-
-backButton.addEventListener(
-"click",
-() => {
-
-//
-    if (!currentFolder) {
-        return;
     }
-
-
-    const parts =
-        currentFolder
-            .split("/")
-            .filter(Boolean);
-
-
-    parts.pop();
-
-
-    loadFolder(
-        parts.join("/")
-    );
-}
-//
-
 );
+//
 
-/* =====================================================
-SEARCH
-===================================================== */
+}
 
-searchInput.addEventListener(
-"input",
-() => {
+if (backButton) {
 
 //
-    const query =
-        searchInput.value
-            .toLowerCase()
-            .trim();
+backButton.addEventListener(
+    "click",
+    () => {
 
+        if (!currentFolder) {
+            return;
+        }
 
-    if (!query) {
+        const parts =
+            currentFolder
+                .split("/")
+                .filter(Boolean);
+
+        parts.pop();
+
+        loadFolder(
+            parts.join("/")
+        );
+
+    }
+);
+//
+
+}
+
+if (searchInput) {
+
+//
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const query =
+            searchInput.value
+                .toLowerCase()
+                .trim();
+
+        if (!query) {
+
+            displayFiles(
+                currentItems,
+                currentFolder
+            );
+
+            return;
+
+        }
+
+        const filtered =
+            currentItems.filter(
+                item =>
+                    item.name
+                        .toLowerCase()
+                        .includes(query)
+            );
 
         displayFiles(
-            currentItems,
+            filtered,
             currentFolder
         );
 
-        return;
     }
-
-
-    const filtered =
-        currentItems.filter(
-            item =>
-                item.name
-                    .toLowerCase()
-                    .includes(query)
-        );
-
-
-    displayFiles(
-        filtered,
-        currentFolder
-    );
-}
+);
 //
 
-);
-
-/* =====================================================
-ESCAPE HTML
-===================================================== */
+}
 
 function escapeHtml(text) {
 
@@ -871,9 +786,5 @@ return div.innerHTML;
 //
 
 }
-
-/* =====================================================
-START
-===================================================== */
 
 loadFolder("");
