@@ -350,7 +350,7 @@ openCodeNewTab.addEventListener(
 "click",
 () => {
 
-
+//
     if (!currentFileUrl) {
         return;
     }
@@ -362,7 +362,7 @@ openCodeNewTab.addEventListener(
         "noopener"
     );
 }
-
+//
 
 );
 
@@ -375,7 +375,7 @@ codeViewer.addEventListener(
 "click",
 event => {
 
-
+//
     if (
         event.target === codeViewer
     ) {
@@ -383,6 +383,7 @@ event => {
         closeViewer();
     }
 }
+//
 
 );
 
@@ -390,7 +391,7 @@ document.addEventListener(
 "keydown",
 event => {
 
-
+//
     if (
         event.key === "Escape"
     ) {
@@ -398,7 +399,7 @@ event => {
         closeViewer();
     }
 }
-
+//
 
 );
 
