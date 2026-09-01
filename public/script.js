@@ -1,20 +1,31 @@
+
 const ROOT_FOLDER = "files";
 
 /* =====================================================
 MAIN ELEMENTS
 ===================================================== */
 
-const container = document.getElementById("file-container");
-const currentPathElement = document.getElementById("currentPath");
+const container =
+    document.getElementById("file-container");
 
-const homeButton = document.getElementById("homeButton");
-const backButton = document.getElementById("backButton");
+const currentPathElement =
+    document.getElementById("currentPath");
 
-const searchInput = document.getElementById("searchInput");
+const homeButton =
+    document.getElementById("homeButton");
 
-const folderTitle = document.getElementById("folderTitle");
+const backButton =
+    document.getElementById("backButton");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const folderTitle =
+    document.getElementById("folderTitle");
+
 const folderDescription =
-document.getElementById("folderDescription");
+    document.getElementById("folderDescription");
+
 
 /* =====================================================
 VIEWER ELEMENTS
@@ -22,30 +33,34 @@ Optional - script will NOT crash if missing
 ===================================================== */
 
 const codeViewer =
-document.getElementById("codeViewer");
+    document.getElementById("codeViewer");
 
 const codeContent =
-document.getElementById("codeContent");
+    document.getElementById("codeContent");
 
 const codeFileName =
-document.getElementById("codeFileName");
+    document.getElementById("codeFileName");
 
 const closeCode =
-document.getElementById("closeCode");
+    document.getElementById("closeCode");
 
 const downloadCode =
-document.getElementById("downloadCode");
+    document.getElementById("downloadCode");
 
 const openCodeNewTab =
-document.getElementById("openCodeNewTab");
+    document.getElementById("openCodeNewTab");
+
 
 /* =====================================================
 VARIABLES
 ===================================================== */
 
 let currentFolder = "";
+
 let currentItems = [];
+
 let currentFileUrl = "";
+
 
 /* =====================================================
 CACHE
@@ -53,67 +68,128 @@ CACHE
 
 const folderCache = new Map();
 
+
+/* =====================================================
+LOADING REQUEST CONTROL
+===================================================== */
+
+let currentRequestId = 0;
+
+
+/* =====================================================
+NORMALIZE PATH
+===================================================== */
+
+function normalizePath(path) {
+
+    if (!path) {
+        return "";
+    }
+
+    return path
+        .split("/")
+        .filter(Boolean)
+        .map(part => part.trim())
+        .filter(Boolean)
+        .join("/");
+}
+
+
 /* =====================================================
 ENCODE PATH
 ===================================================== */
 
 function encodePath(path) {
 
-//
-return path
-    .split("/")
-    .filter(Boolean)
-    .map(part => encodeURIComponent(part))
-    .join("/");
-//
+    const normalized =
+        normalizePath(path);
 
+    if (!normalized) {
+        return "";
+    }
+
+    return normalized
+        .split("/")
+        .map(part =>
+            encodeURIComponent(part)
+        )
+        .join("/");
 }
+
 
 /* =====================================================
 INDEX URL
 ===================================================== */
 
-function getIndexUrl(folder) {
+function getIndexUrl(folder = "") {
 
-//
-const encodedFolder =
-    encodePath(folder);
+    const normalizedFolder =
+        normalizePath(folder);
 
-if (!encodedFolder) {
+    const encodedFolder =
+        encodePath(normalizedFolder);
 
-    return "/" +
-        ROOT_FOLDER +
-        "/index.json";
+    let url;
+
+    if (!encodedFolder) {
+
+        url =
+            "/" +
+            ROOT_FOLDER +
+            "/index.json";
+
+    } else {
+
+        url =
+            "/" +
+            ROOT_FOLDER +
+            "/" +
+            encodedFolder +
+            "/index.json";
+    }
+
+    return url;
 }
 
-return "/" +
-    ROOT_FOLDER +
-    "/" +
-    encodedFolder +
-    "/index.json";
-//
-
-}
 
 /* =====================================================
 FILE URL
 ===================================================== */
 
-function getFileUrl(folder, fileName) {
+function getFileUrl(
+    folder,
+    fileName
+) {
 
-//
-const fullPath =
-    folder
-        ? folder + "/" + fileName
-        : fileName;
+    const normalizedFolder =
+        normalizePath(folder);
 
-return "/" +
-    ROOT_FOLDER +
-    "/" +
-    encodePath(fullPath);
-//
+    const normalizedFileName =
+        String(fileName || "").trim();
 
+    let fullPath;
+
+    if (normalizedFolder) {
+
+        fullPath =
+            normalizedFolder +
+            "/" +
+            normalizedFileName;
+
+    } else {
+
+        fullPath =
+            normalizedFileName;
+    }
+
+    return (
+        "/" +
+        ROOT_FOLDER +
+        "/" +
+        encodePath(fullPath)
+    );
 }
+
 
 /* =====================================================
 FILE ICON
@@ -121,65 +197,64 @@ FILE ICON
 
 function getIcon(name, type) {
 
-//
-if (type === "folder") {
-    return "📁";
+    if (type === "folder") {
+        return "📁";
+    }
+
+    const lower =
+        String(name || "").toLowerCase();
+
+
+    if (lower.endsWith(".c"))
+        return "💻";
+
+    if (lower.endsWith(".h"))
+        return "🔧";
+
+    if (
+        lower.endsWith(".cpp") ||
+        lower.endsWith(".cc")
+    )
+        return "⚙️";
+
+    if (lower.endsWith(".java"))
+        return "☕";
+
+    if (lower.endsWith(".py"))
+        return "🐍";
+
+    if (lower.endsWith(".js"))
+        return "🟨";
+
+    if (lower.endsWith(".html"))
+        return "🌐";
+
+    if (lower.endsWith(".css"))
+        return "🎨";
+
+    if (lower.endsWith(".json"))
+        return "📋";
+
+    if (lower.endsWith(".pdf"))
+        return "📕";
+
+    if (lower.endsWith(".txt"))
+        return "📝";
+
+    if (
+        lower.endsWith(".png") ||
+        lower.endsWith(".jpg") ||
+        lower.endsWith(".jpeg") ||
+        lower.endsWith(".webp")
+    )
+        return "🖼️";
+
+    if (lower.endsWith(".zip"))
+        return "🗜️";
+
+    return "📄";
 }
 
-const lower =
-    name.toLowerCase();
-
-if (lower.endsWith(".c"))
-    return "💻";
-
-if (lower.endsWith(".h"))
-    return "🔧";
-
-if (
-    lower.endsWith(".cpp") ||
-    lower.endsWith(".cc")
-)
-    return "⚙️";
-
-if (lower.endsWith(".java"))
-    return "☕";
-
-if (lower.endsWith(".py"))
-    return "🐍";
-
-if (lower.endsWith(".js"))
-    return "🟨";
-
-if (lower.endsWith(".html"))
-    return "🌐";
-
-if (lower.endsWith(".css"))
-    return "🎨";
-
-if (lower.endsWith(".json"))
-    return "📋";
-
-if (lower.endsWith(".pdf"))
-    return "📕";
-
-if (lower.endsWith(".txt"))
-    return "📝";
-
-if (
-    lower.endsWith(".png") ||
-    lower.endsWith(".jpg") ||
-    lower.endsWith(".jpeg") ||
-    lower.endsWith(".webp")
-)
-    return "🖼️";
-
-if (lower.endsWith(".zip"))
-    return "🗜️";
-
-return "📄";
-//
-
-}
 
 /* =====================================================
 FILE TYPE
@@ -187,27 +262,27 @@ FILE TYPE
 
 function getType(name, type) {
 
-//
-if (type === "folder") {
-    return "Folder";
+    if (type === "folder") {
+        return "Folder";
+    }
+
+    const index =
+        String(name || "").lastIndexOf(".");
+
+
+    if (index === -1) {
+        return "File";
+    }
+
+
+    return (
+        String(name)
+            .substring(index + 1)
+            .toUpperCase() +
+        " File"
+    );
 }
 
-const index =
-    name.lastIndexOf(".");
-
-if (index === -1) {
-    return "File";
-}
-
-return (
-    name
-        .substring(index + 1)
-        .toUpperCase() +
-    " File"
-);
-//
-
-}
 
 /* =====================================================
 FILE SIZE
@@ -215,30 +290,54 @@ FILE SIZE
 
 function formatSize(size) {
 
-//
-if (!size) {
-    return "";
-}
+    if (
+        size === undefined ||
+        size === null ||
+        size === ""
+    ) {
+        return "";
+    }
 
-if (size < 1024) {
-    return size + " B";
-}
+    const numericSize =
+        Number(size);
 
-if (size < 1024 * 1024) {
+
+    if (Number.isNaN(numericSize)) {
+        return "";
+    }
+
+
+    if (numericSize < 1024) {
+
+        return (
+            numericSize +
+            " B"
+        );
+    }
+
+
+    if (
+        numericSize <
+        1024 * 1024
+    ) {
+
+        return (
+            (numericSize / 1024)
+                .toFixed(1) +
+            " KB"
+        );
+    }
+
 
     return (
-        (size / 1024).toFixed(1) +
-        " KB"
+        (
+            numericSize /
+            (1024 * 1024)
+        ).toFixed(1) +
+        " MB"
     );
 }
 
-return (
-    (size / (1024 * 1024)).toFixed(1) +
-    " MB"
-);
-//
-
-}
 
 /* =====================================================
 CODE FILE
@@ -246,36 +345,37 @@ CODE FILE
 
 function isCodeFile(name) {
 
-//
-const lower =
-    name.toLowerCase();
+    const lower =
+        String(name || "").toLowerCase();
 
-const extensions = [
 
-    ".c",
-    ".h",
-    ".cpp",
-    ".cc",
+    const extensions = [
 
-    ".java",
-    ".py",
+        ".c",
+        ".h",
+        ".cpp",
+        ".cc",
 
-    ".js",
-    ".html",
-    ".css",
+        ".java",
+        ".py",
 
-    ".json",
-    ".txt",
-    ".sh"
+        ".js",
+        ".html",
+        ".css",
 
-];
+        ".json",
+        ".txt",
+        ".sh"
 
-return extensions.some(
-    ext => lower.endsWith(ext)
-);
-//
+    ];
 
+
+    return extensions.some(
+        ext =>
+            lower.endsWith(ext)
+    );
 }
+
 
 /* =====================================================
 PDF FILE
@@ -283,13 +383,11 @@ PDF FILE
 
 function isPdf(name) {
 
-//
-return name
-    .toLowerCase()
-    .endsWith(".pdf");
-//
-
+    return String(name || "")
+        .toLowerCase()
+        .endsWith(".pdf");
 }
+
 
 /* =====================================================
 LOADING
@@ -297,23 +395,26 @@ LOADING
 
 function showLoading() {
 
-//
-container.innerHTML = `
+    if (!container) {
+        return;
+    }
 
-    <div class="loading">
 
-        <div class="loading-spinner"></div>
+    container.innerHTML = `
 
-        <p>
-            Loading files...
-        </p>
+        <div class="loading">
 
-    </div>
+            <div class="loading-spinner"></div>
 
-`;
-//
+            <p>
+                Loading files...
+            </p>
 
+        </div>
+
+    `;
 }
+
 
 /* =====================================================
 UPDATE HEADER
@@ -321,170 +422,117 @@ UPDATE HEADER
 
 function updateHeader(folder) {
 
-//
-if (currentPathElement) {
-
-    currentPathElement.textContent =
-        folder
-            ? "/" + folder + "/"
-            : "/";
-}
+    const normalizedFolder =
+        normalizePath(folder);
 
 
-if (!folder) {
+    if (currentPathElement) {
+
+        currentPathElement.textContent =
+            normalizedFolder
+                ? "/" +
+                  normalizedFolder +
+                  "/"
+                : "/";
+    }
+
+
+    if (!normalizedFolder) {
+
+        if (folderTitle) {
+
+            folderTitle.textContent =
+                "📁 Home";
+        }
+
+
+        if (folderDescription) {
+
+            folderDescription.textContent =
+                "Browse your files and folders";
+        }
+
+
+        if (backButton) {
+
+            backButton.disabled =
+                true;
+        }
+
+
+        return;
+    }
+
+
+    const parts =
+        normalizedFolder
+            .split("/")
+            .filter(Boolean);
+
 
     if (folderTitle) {
 
         folderTitle.textContent =
-            "📁 Home";
+            "📁 " +
+            parts[parts.length - 1];
     }
+
 
     if (folderDescription) {
 
         folderDescription.textContent =
-            "Browse your files and folders";
+            "Browse files in this folder";
     }
+
 
     if (backButton) {
-        backButton.disabled = true;
+
+        backButton.disabled =
+            false;
     }
-
-    return;
 }
 
-
-const parts =
-    folder
-        .split("/")
-        .filter(Boolean);
-
-
-if (folderTitle) {
-
-    folderTitle.textContent =
-        "📁 " +
-        parts[parts.length - 1];
-}
-
-
-if (folderDescription) {
-
-    folderDescription.textContent =
-        "Browse files in this folder";
-}
-
-
-if (backButton) {
-    backButton.disabled = false;
-}
-//
-
-}
 
 /* =====================================================
-LOAD FOLDER
+SHOW FOLDER ERROR
 ===================================================== */
 
-async function loadFolder(folder = "") {
+function showFolderError(
+    folder,
+    url,
+    error
+) {
 
-//
-currentFolder =
-    folder;
-
-
-if (searchInput) {
-    searchInput.value = "";
-}
-
-
-updateHeader(folder);
-
-
-/* -----------------------------------------------
-   CHECK CACHE FIRST
------------------------------------------------- */
-
-if (folderCache.has(folder)) {
-
-    currentItems =
-        folderCache.get(folder);
-
-    displayFiles(
-        currentItems,
-        folder
-    );
-
-    return;
-}
-
-
-/* -----------------------------------------------
-   SHOW LOADING
------------------------------------------------- */
-
-showLoading();
-
-
-const url =
-    getIndexUrl(folder);
-
-
-console.log(
-    "Loading folder:",
-    url
-);
-
-
-try {
-
-    const response =
-        await fetch(
-            url,
-            {
-                cache: "force-cache"
-            }
-        );
-
-
-    if (!response.ok) {
-
-        throw new Error(
-            "HTTP " +
-            response.status
-        );
+    if (!container) {
+        return;
     }
 
 
-    const data =
-        await response.json();
-
-
-    /* -------------------------------------------
-       SAVE ONLY SMALL INDEX.JSON
-       NOT THE WHOLE FILES FOLDER
-    -------------------------------------------- */
-
-    folderCache.set(
-        folder,
-        data
+    console.error(
+        "========================================"
     );
-
-
-    currentItems =
-        data;
-
-
-    displayFiles(
-        data,
-        folder
-    );
-
-
-} catch (error) {
 
     console.error(
-        "Folder loading error:",
+        "FOLDER LOADING ERROR"
+    );
+
+    console.error(
+        "Folder:",
+        folder || "/"
+    );
+
+    console.error(
+        "URL:",
+        url
+    );
+
+    console.error(
+        "Error:",
         error
+    );
+
+    console.error(
+        "========================================"
     );
 
 
@@ -504,6 +552,13 @@ try {
                 ${escapeHtml(
                     error.message
                 )}
+            </p>
+
+            <p>
+                <strong>
+                    Requested:
+                </strong>
+                ${escapeHtml(url)}
             </p>
 
             <button
@@ -530,245 +585,564 @@ try {
         retryButton.addEventListener(
             "click",
             () => {
-                loadFolder(folder);
+
+                folderCache.delete(
+                    folder
+                );
+
+                loadFolder(
+                    folder
+                );
             }
         );
     }
 }
-//
 
+
+/* =====================================================
+LOAD FOLDER
+===================================================== */
+
+async function loadFolder(
+    folder = ""
+) {
+
+    /* -----------------------------------------------
+       NORMALIZE FOLDER
+    ------------------------------------------------ */
+
+    const normalizedFolder =
+        normalizePath(folder);
+
+
+    /* -----------------------------------------------
+       REQUEST ID
+       Prevent old requests from overwriting
+       the current folder
+    ------------------------------------------------ */
+
+    const requestId =
+        ++currentRequestId;
+
+
+    /* -----------------------------------------------
+       UPDATE CURRENT FOLDER
+    ------------------------------------------------ */
+
+    currentFolder =
+        normalizedFolder;
+
+
+    /* -----------------------------------------------
+       CLEAR SEARCH
+    ------------------------------------------------ */
+
+    if (searchInput) {
+
+        searchInput.value =
+            "";
+    }
+
+
+    /* -----------------------------------------------
+       UPDATE HEADER
+    ------------------------------------------------ */
+
+    updateHeader(
+        normalizedFolder
+    );
+
+
+    /* -----------------------------------------------
+       CACHE
+    ------------------------------------------------ */
+
+    if (
+        folderCache.has(
+            normalizedFolder
+        )
+    ) {
+
+        console.log(
+            "Loading from cache:",
+            normalizedFolder || "/"
+        );
+
+
+        currentItems =
+            folderCache.get(
+                normalizedFolder
+            );
+
+
+        displayFiles(
+            currentItems,
+            normalizedFolder
+        );
+
+
+        return;
+    }
+
+
+    /* -----------------------------------------------
+       SHOW LOADING
+    ------------------------------------------------ */
+
+    showLoading();
+
+
+    /* -----------------------------------------------
+       BUILD URL
+    ------------------------------------------------ */
+
+    const url =
+        getIndexUrl(
+            normalizedFolder
+        );
+
+
+    console.log(
+        "========================================"
+    );
+
+    console.log(
+        "Loading folder:",
+        normalizedFolder || "/"
+    );
+
+    console.log(
+        "Index URL:",
+        url
+    );
+
+    console.log(
+        "========================================"
+    );
+
+
+    /* -----------------------------------------------
+       FETCH INDEX.JSON
+    ------------------------------------------------ */
+
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        /* -------------------------------------------
+           IGNORE OLD REQUEST
+        -------------------------------------------- */
+
+        if (
+            requestId !==
+            currentRequestId
+        ) {
+
+            return;
+        }
+
+
+        console.log(
+            "HTTP status:",
+            response.status,
+            url
+        );
+
+
+        /* -------------------------------------------
+           HTTP ERROR
+        -------------------------------------------- */
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status +
+                " - " +
+                url
+            );
+        }
+
+
+        /* -------------------------------------------
+           READ JSON
+        -------------------------------------------- */
+
+        const data =
+            await response.json();
+
+
+        /* -------------------------------------------
+           VALIDATE JSON
+        -------------------------------------------- */
+
+        if (
+            !Array.isArray(data)
+        ) {
+
+            throw new Error(
+                "Invalid index.json format. Expected an array."
+            );
+        }
+
+
+        /* -------------------------------------------
+           CACHE INDEX
+        -------------------------------------------- */
+
+        folderCache.set(
+            normalizedFolder,
+            data
+        );
+
+
+        /* -------------------------------------------
+           UPDATE CURRENT ITEMS
+        -------------------------------------------- */
+
+        currentItems =
+            data;
+
+
+        /* -------------------------------------------
+           DISPLAY
+        -------------------------------------------- */
+
+        displayFiles(
+            data,
+            normalizedFolder
+        );
+
+
+    } catch (error) {
+
+        /* -------------------------------------------
+           IGNORE OLD REQUEST ERROR
+        -------------------------------------------- */
+
+        if (
+            requestId !==
+            currentRequestId
+        ) {
+
+            return;
+        }
+
+
+        showFolderError(
+            normalizedFolder,
+            url,
+            error
+        );
+    }
 }
+
 
 /* =====================================================
 DISPLAY FILES
 ===================================================== */
 
 function displayFiles(
-items,
-folder
+    items,
+    folder
 ) {
 
-//
-container.innerHTML = "";
+    if (!container) {
+        return;
+    }
 
 
-if (
-    !items ||
-    items.length === 0
-) {
+    /* -----------------------------------------------
+       CLEAR
+    ------------------------------------------------ */
 
-    container.innerHTML = `
-
-        <div class="empty-message">
-
-            <div class="empty-icon">
-                📂
-            </div>
-
-            <h3>
-                Empty folder
-            </h3>
-
-            <p>
-                No files found.
-            </p>
-
-        </div>
-
-    `;
-
-    return;
-}
+    container.innerHTML =
+        "";
 
 
-/* -----------------------------------------------
-   FOLDERS FIRST
------------------------------------------------- */
+    /* -----------------------------------------------
+       VALIDATE
+    ------------------------------------------------ */
 
-const sorted =
-    [...items].sort(
-        (a, b) => {
+    if (
+        !Array.isArray(items) ||
+        items.length === 0
+    ) {
 
-            const aFolder =
-                a.type === "folder"
-                    ? 0
-                    : 1;
+        container.innerHTML = `
 
-            const bFolder =
-                b.type === "folder"
-                    ? 0
-                    : 1;
+            <div class="empty-message">
 
-
-            if (
-                aFolder !==
-                bFolder
-            ) {
-
-                return (
-                    aFolder -
-                    bFolder
-                );
-            }
-
-
-            return a.name.localeCompare(
-                b.name
-            );
-        }
-    );
-
-
-const fragment =
-    document.createDocumentFragment();
-
-
-sorted.forEach(
-    item => {
-
-        const type =
-            item.type === "folder"
-                ? "folder"
-                : "file";
-
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "file-card" +
-            (
-                type === "folder"
-                    ? " folder-card"
-                    : ""
-            );
-
-
-        const icon =
-            getIcon(
-                item.name,
-                type
-            );
-
-
-        const fileType =
-            getType(
-                item.name,
-                type
-            );
-
-
-        const size =
-            formatSize(
-                item.size
-            );
-
-
-        card.innerHTML = `
-
-            <div class="card-top">
-
-                <div class="file-icon">
-                    ${icon}
+                <div class="empty-icon">
+                    📂
                 </div>
 
-                <div class="file-info">
+                <h3>
+                    Empty folder
+                </h3>
 
-                    <div class="file-name">
-                        ${escapeHtml(
-                            item.name
-                        )}
-                    </div>
-
-                    <div class="file-type">
-                        ${fileType}
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <span class="file-size">
-                    ${size}
-                </span>
-
-                <button
-                    class="open-button"
-                    type="button"
-                >
-                    ${
-                        type === "folder"
-                            ? "Open →"
-                            : "Open ↗"
-                    }
-                </button>
+                <p>
+                    No files found.
+                </p>
 
             </div>
 
         `;
 
-
-        const button =
-            card.querySelector(
-                ".open-button"
-            );
+        return;
+    }
 
 
-        button.addEventListener(
-            "click",
-            () => {
+    /* -----------------------------------------------
+       NORMALIZE FOLDER
+    ------------------------------------------------ */
 
-                /* FOLDER */
+    const normalizedFolder =
+        normalizePath(folder);
+
+
+    /* -----------------------------------------------
+       FOLDERS FIRST
+    ------------------------------------------------ */
+
+    const sorted =
+        [...items].sort(
+            (a, b) => {
+
+                const aFolder =
+                    a.type === "folder"
+                        ? 0
+                        : 1;
+
+
+                const bFolder =
+                    b.type === "folder"
+                        ? 0
+                        : 1;
+
 
                 if (
-                    type ===
-                    "folder"
+                    aFolder !==
+                    bFolder
                 ) {
 
-                    const nextFolder =
-                        folder
-                            ? folder +
-                              "/" +
-                              item.name
-                            : item.name;
-
-
-                    loadFolder(
-                        nextFolder
+                    return (
+                        aFolder -
+                        bFolder
                     );
-
-
-                    return;
                 }
 
 
-                /* FILE */
-
-                openFile(item);
-
+                return String(
+                    a.name || ""
+                ).localeCompare(
+                    String(
+                        b.name || ""
+                    ),
+                    undefined,
+                    {
+                        sensitivity:
+                            "base"
+                    }
+                );
             }
         );
 
 
-        fragment.appendChild(
-            card
-        );
-    }
-);
+    /* -----------------------------------------------
+       FRAGMENT
+    ------------------------------------------------ */
+
+    const fragment =
+        document.createDocumentFragment();
 
 
-container.appendChild(
-    fragment
-);
-//
+    /* -----------------------------------------------
+       CREATE CARDS
+    ------------------------------------------------ */
 
+    sorted.forEach(
+        item => {
+
+            if (!item || !item.name) {
+                return;
+            }
+
+
+            const type =
+                item.type === "folder"
+                    ? "folder"
+                    : "file";
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "file-card" +
+                (
+                    type === "folder"
+                        ? " folder-card"
+                        : ""
+                );
+
+
+            const icon =
+                getIcon(
+                    item.name,
+                    type
+                );
+
+
+            const fileType =
+                getType(
+                    item.name,
+                    type
+                );
+
+
+            const size =
+                formatSize(
+                    item.size
+                );
+
+
+            card.innerHTML = `
+
+                <div class="card-top">
+
+                    <div class="file-icon">
+                        ${icon}
+                    </div>
+
+                    <div class="file-info">
+
+                        <div class="file-name">
+                            ${escapeHtml(
+                                item.name
+                            )}
+                        </div>
+
+                        <div class="file-type">
+                            ${escapeHtml(
+                                fileType
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <span class="file-size">
+                        ${escapeHtml(
+                            size
+                        )}
+                    </span>
+
+                    <button
+                        class="open-button"
+                        type="button"
+                    >
+                        ${
+                            type === "folder"
+                                ? "Open →"
+                                : "Open ↗"
+                        }
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const button =
+                card.querySelector(
+                    ".open-button"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    /* --------------------------------
+                       FOLDER
+                    -------------------------------- */
+
+                    if (
+                        type ===
+                        "folder"
+                    ) {
+
+                        const nextFolder =
+                            normalizedFolder
+                                ? normalizedFolder +
+                                  "/" +
+                                  item.name
+                                : item.name;
+
+
+                        console.log(
+                            "Opening folder:",
+                            nextFolder
+                        );
+
+
+                        loadFolder(
+                            nextFolder
+                        );
+
+
+                        return;
+                    }
+
+
+                    /* --------------------------------
+                       FILE
+                    -------------------------------- */
+
+                    openFile(
+                        item
+                    );
+                }
+            );
+
+
+            fragment.appendChild(
+                card
+            );
+        }
+    );
+
+
+    /* -----------------------------------------------
+       DISPLAY
+    ------------------------------------------------ */
+
+    container.appendChild(
+        fragment
+    );
 }
+
 
 /* =====================================================
 OPEN FILE
@@ -776,165 +1150,179 @@ OPEN FILE
 
 function openFile(item) {
 
-//
-const url =
-    getFileUrl(
-        currentFolder,
-        item.name
+    if (
+        !item ||
+        !item.name
+    ) {
+
+        return;
+    }
+
+
+    const url =
+        getFileUrl(
+            currentFolder,
+            item.name
+        );
+
+
+    console.log(
+        "Opening file:",
+        url
     );
 
 
-console.log(
-    "Opening:",
-    url
-);
+    /* -----------------------------------------------
+       CODE
+    ------------------------------------------------ */
+
+    if (
+        isCodeFile(
+            item.name
+        )
+    ) {
+
+        openCode(
+            url,
+            item.name
+        );
+
+        return;
+    }
 
 
-/* -----------------------------------------------
-   CODE
------------------------------------------------- */
+    /* -----------------------------------------------
+       PDF
+    ------------------------------------------------ */
 
-if (
-    isCodeFile(
-        item.name
-    )
-) {
+    if (
+        isPdf(
+            item.name
+        )
+    ) {
 
-    openCode(
-        url,
-        item.name
-    );
+        window.open(
+            url,
+            "_blank"
+        );
 
-    return;
-}
+        return;
+    }
 
 
-/* -----------------------------------------------
-   PDF
------------------------------------------------- */
-
-if (
-    isPdf(
-        item.name
-    )
-) {
+    /* -----------------------------------------------
+       OTHER FILE
+    ------------------------------------------------ */
 
     window.open(
         url,
         "_blank"
     );
-
-    return;
 }
 
-
-/* -----------------------------------------------
-   OTHER FILE
------------------------------------------------- */
-
-window.open(
-    url,
-    "_blank"
-);
-//
-
-}
 
 /* =====================================================
 OPEN CODE
 ===================================================== */
 
 async function openCode(
-url,
-fileName
+    url,
+    fileName
 ) {
 
-//
-/*
-   IMPORTANT:
+    /* -----------------------------------------------
+       OPTIONAL VIEWER
+    ------------------------------------------------ */
 
-   If viewer HTML is not present,
-   simply open the code in a new tab.
+    if (
+        !codeViewer ||
+        !codeContent ||
+        !codeFileName
+    ) {
 
-   This prevents:
-   "codeFileName is null"
-*/
-
-if (
-    !codeViewer ||
-    !codeContent ||
-    !codeFileName
-) {
-
-    window.open(
-        url,
-        "_blank"
-    );
-
-    return;
-}
-
-
-currentFileUrl =
-    url;
-
-
-codeFileName.textContent =
-    fileName;
-
-
-codeContent.textContent =
-    "Loading code...";
-
-
-codeViewer.classList.remove(
-    "hidden"
-);
-
-
-try {
-
-    const response =
-        await fetch(
+        window.open(
             url,
-            {
-                cache:
-                    "force-cache"
-            }
+            "_blank"
         );
 
-
-    if (!response.ok) {
-
-        throw new Error(
-            "HTTP " +
-            response.status
-        );
+        return;
     }
 
 
-    const text =
-        await response.text();
+    /* -----------------------------------------------
+       SAVE CURRENT URL
+    ------------------------------------------------ */
+
+    currentFileUrl =
+        url;
+
+
+    /* -----------------------------------------------
+       UPDATE VIEWER
+    ------------------------------------------------ */
+
+    codeFileName.textContent =
+        fileName;
 
 
     codeContent.textContent =
-        text;
+        "Loading code...";
 
 
-} catch (error) {
-
-    console.error(
-        "Code loading error:",
-        error
+    codeViewer.classList.remove(
+        "hidden"
     );
 
 
-    codeContent.textContent =
-        "Unable to load this code file.";
-}
-//
+    /* -----------------------------------------------
+       FETCH CODE
+    ------------------------------------------------ */
 
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status +
+                " - " +
+                url
+            );
+        }
+
+
+        const text =
+            await response.text();
+
+
+        codeContent.textContent =
+            text;
+
+
+    } catch (error) {
+
+        console.error(
+            "Code loading error:",
+            error
+        );
+
+
+        codeContent.textContent =
+            "Unable to load this code file.\n\n" +
+            error.message;
+    }
 }
+
 
 /* =====================================================
 CLOSE CODE VIEWER
@@ -942,29 +1330,27 @@ CLOSE CODE VIEWER
 
 function closeViewer() {
 
-//
-if (!codeViewer) {
-    return;
-}
+    if (!codeViewer) {
+        return;
+    }
 
 
-codeViewer.classList.add(
-    "hidden"
-);
+    codeViewer.classList.add(
+        "hidden"
+    );
 
 
-if (codeContent) {
+    if (codeContent) {
 
-    codeContent.textContent =
+        codeContent.textContent =
+            "";
+    }
+
+
+    currentFileUrl =
         "";
 }
 
-
-currentFileUrl =
-    "";
-//
-
-}
 
 /* =====================================================
 DOWNLOAD
@@ -972,46 +1358,44 @@ DOWNLOAD
 
 if (downloadCode) {
 
-//
-downloadCode.addEventListener(
-    "click",
-    () => {
+    downloadCode.addEventListener(
+        "click",
+        () => {
 
-        if (!currentFileUrl) {
-            return;
-        }
+            if (!currentFileUrl) {
+                return;
+            }
 
 
-        const link =
-            document.createElement(
-                "a"
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                currentFileUrl;
+
+
+            link.download =
+                codeFileName
+                    ? codeFileName.textContent
+                    : "download";
+
+
+            document.body.appendChild(
+                link
             );
 
 
-        link.href =
-            currentFileUrl;
+            link.click();
 
 
-        link.download =
-            codeFileName
-                ? codeFileName.textContent
-                : "download";
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        link.remove();
-    }
-);
-//
-
+            link.remove();
+        }
+    );
 }
+
 
 /* =====================================================
 OPEN CODE NEW TAB
@@ -1019,25 +1403,23 @@ OPEN CODE NEW TAB
 
 if (openCodeNewTab) {
 
-//
-openCodeNewTab.addEventListener(
-    "click",
-    () => {
+    openCodeNewTab.addEventListener(
+        "click",
+        () => {
 
-        if (!currentFileUrl) {
-            return;
+            if (!currentFileUrl) {
+                return;
+            }
+
+
+            window.open(
+                currentFileUrl,
+                "_blank"
+            );
         }
-
-
-        window.open(
-            currentFileUrl,
-            "_blank"
-        );
-    }
-);
-//
-
+    );
 }
+
 
 /* =====================================================
 CLOSE CODE BUTTON
@@ -1045,14 +1427,12 @@ CLOSE CODE BUTTON
 
 if (closeCode) {
 
-//
-closeCode.addEventListener(
-    "click",
-    closeViewer
-);
-//
-
+    closeCode.addEventListener(
+        "click",
+        closeViewer
+    );
 }
+
 
 /* =====================================================
 CLICK OUTSIDE VIEWER
@@ -1060,44 +1440,40 @@ CLICK OUTSIDE VIEWER
 
 if (codeViewer) {
 
-//
-codeViewer.addEventListener(
-    "click",
-    event => {
+    codeViewer.addEventListener(
+        "click",
+        event => {
 
-        if (
-            event.target ===
-            codeViewer
-        ) {
+            if (
+                event.target ===
+                codeViewer
+            ) {
 
-            closeViewer();
+                closeViewer();
+            }
         }
-    }
-);
-//
-
+    );
 }
+
 
 /* =====================================================
 ESCAPE
 ===================================================== */
 
 document.addEventListener(
-"keydown",
-event => {
+    "keydown",
+    event => {
 
-//
-    if (
-        event.key ===
-        "Escape"
-    ) {
+        if (
+            event.key ===
+            "Escape"
+        ) {
 
-        closeViewer();
+            closeViewer();
+        }
     }
-}
-//
-
 );
+
 
 /* =====================================================
 HOME
@@ -1105,17 +1481,15 @@ HOME
 
 if (homeButton) {
 
-//
-homeButton.addEventListener(
-    "click",
-    () => {
+    homeButton.addEventListener(
+        "click",
+        () => {
 
-        loadFolder("");
-    }
-);
-//
-
+            loadFolder("");
+        }
+    );
 }
+
 
 /* =====================================================
 BACK
@@ -1123,37 +1497,35 @@ BACK
 
 if (backButton) {
 
-//
-backButton.addEventListener(
-    "click",
-    () => {
+    backButton.addEventListener(
+        "click",
+        () => {
 
-        if (!currentFolder) {
-            return;
+            if (!currentFolder) {
+                return;
+            }
+
+
+            const parts =
+                currentFolder
+                    .split("/")
+                    .filter(Boolean);
+
+
+            parts.pop();
+
+
+            const parent =
+                parts.join("/");
+
+
+            loadFolder(
+                parent
+            );
         }
-
-
-        const parts =
-            currentFolder
-                .split("/")
-                .filter(Boolean);
-
-
-        parts.pop();
-
-
-        const parent =
-            parts.join("/");
-
-
-        loadFolder(
-            parent
-        );
-    }
-);
-//
-
+    );
 }
+
 
 /* =====================================================
 SEARCH
@@ -1161,48 +1533,48 @@ SEARCH
 
 if (searchInput) {
 
-//
-searchInput.addEventListener(
-    "input",
-    () => {
+    searchInput.addEventListener(
+        "input",
+        () => {
 
-        const query =
-            searchInput.value
-                .toLowerCase()
-                .trim();
-
-
-        if (!query) {
-
-            displayFiles(
-                currentItems,
-                currentFolder
-            );
-
-            return;
-        }
+            const query =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
 
 
-        const filtered =
-            currentItems.filter(
-                item =>
-                    item.name
+            if (!query) {
+
+                displayFiles(
+                    currentItems,
+                    currentFolder
+                );
+
+                return;
+            }
+
+
+            const filtered =
+                currentItems.filter(
+                    item =>
+                        String(
+                            item.name || ""
+                        )
                         .toLowerCase()
                         .includes(
                             query
                         )
+                );
+
+
+            displayFiles(
+                filtered,
+                currentFolder
             );
-
-
-        displayFiles(
-            filtered,
-            currentFolder
-        );
-    }
-);
-//
-
+        }
+    );
 }
+
 
 /* =====================================================
 ESCAPE HTML
@@ -1210,24 +1582,25 @@ ESCAPE HTML
 
 function escapeHtml(text) {
 
-//
-const div =
-    document.createElement(
-        "div"
-    );
+    const div =
+        document.createElement(
+            "div"
+        );
 
 
-div.textContent =
-    text;
+    div.textContent =
+        String(
+            text ?? ""
+        );
 
 
-return div.innerHTML;
-//
-
+    return div.innerHTML;
 }
 
+
 /* =====================================================
-START
+START APPLICATION
 ===================================================== */
 
 loadFolder("");
+
