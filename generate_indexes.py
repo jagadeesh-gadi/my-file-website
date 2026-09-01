@@ -5,76 +5,140 @@ ROOT = "files"
 
 
 def generate_index(folder):
-
     items = []
 
+    # ---------------------------------
+    # READ FOLDER
+    # ---------------------------------
     try:
-        names = sorted(
-            os.listdir(folder),
-            key=str.lower
-        )
-    except OSError as e:
-        print("ERROR:", folder, e)
+        entries = os.listdir(folder)
+    except OSError as error:
+        print(f"ERROR reading folder: {folder}")
+        print(error)
         return
 
-    for name in names:
+    # Sort alphabetically
+    entries.sort(key=str.lower)
 
+    # ---------------------------------
+    # PROCESS EACH ENTRY
+    # ---------------------------------
+    for name in entries:
+
+        # Never include index.json inside itself
         if name == "index.json":
             continue
 
-        path = os.path.join(folder, name)
+        full_path = os.path.join(folder, name)
 
-        # Folder
-        if os.path.isdir(path):
+        # ---------------------------------
+        # FOLDER
+        # ---------------------------------
+        if os.path.isdir(full_path):
 
             items.append({
                 "name": name,
                 "type": "folder"
             })
 
-        # File
-        elif os.path.isfile(path):
+        # ---------------------------------
+        # FILE
+        # ---------------------------------
+        elif os.path.isfile(full_path):
+
+            try:
+                size = os.path.getsize(full_path)
+            except OSError:
+                size = 0
 
             items.append({
                 "name": name,
                 "type": "file",
-                "size": os.path.getsize(path)
+                "size": size
             })
 
-    index_path = os.path.join(
+    # ---------------------------------
+    # INDEX FILE PATH
+    # ---------------------------------
+    index_file = os.path.join(
         folder,
         "index.json"
     )
 
+    # ---------------------------------
+    # WRITE index.json
+    # ---------------------------------
     try:
 
         with open(
-            index_path,
+            index_file,
             "w",
             encoding="utf-8"
-        ) as f:
+        ) as file:
 
             json.dump(
                 items,
-                f,
+                file,
                 indent=2,
                 ensure_ascii=False
             )
 
-        print("Created:", index_path)
+        print("UPDATED:", index_file)
 
-    except OSError as e:
+    except OSError as error:
+
+        print(f"ERROR writing: {index_file}")
+        print(error)
+
+
+def main():
+
+    # ---------------------------------
+    # CHECK FILES FOLDER EXISTS
+    # ---------------------------------
+    if not os.path.exists(ROOT):
 
         print(
-            "ERROR writing:",
-            index_path,
-            e
+            f"ERROR: '{ROOT}' folder does not exist."
         )
 
+        return
 
-# Generate index.json for every directory
-for root, dirs, files in os.walk(ROOT):
+    # ---------------------------------
+    # CHECK IT IS A DIRECTORY
+    # ---------------------------------
+    if not os.path.isdir(ROOT):
 
-    generate_index(root)
+        print(
+            f"ERROR: '{ROOT}' is not a directory."
+        )
 
-print("\nAll index.json files generated successfully.")
+        return
+
+    # ---------------------------------
+    # GENERATE ALL INDEX FILES
+    # ---------------------------------
+    folder_count = 0
+
+    for current_folder, directories, files in os.walk(ROOT):
+
+        generate_index(current_folder)
+
+        folder_count += 1
+
+    # ---------------------------------
+    # DONE
+    # ---------------------------------
+    print()
+    print("=" * 60)
+    print("ALL INDEX FILES GENERATED SUCCESSFULLY")
+    print("=" * 60)
+    print(f"Folders processed: {folder_count}")
+    print("=" * 60)
+
+
+# ---------------------------------
+# PROGRAM ENTRY POINT
+# ---------------------------------
+if __name__ == "__main__":
+    main()
