@@ -1,0 +1,146 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16144
+  },
+  {
+    "name": "basic_function.c",
+    "type": "file",
+    "size": 211
+  },
+  {
+    "name": "bitwise.c",
+    "type": "file",
+    "size": 598
+  },
+  {
+    "name": "Bitwise.h",
+    "type": "file",
+    "size": 262
+  },
+  {
+    "name": "count_setbit.c",
+    "type": "file",
+    "size": 355
+  },
+  {
+    "name": "even_odd.c",
+    "type": "file",
+    "size": 287
+  },
+  {
+    "name": "even_odd_swap.c",
+    "type": "file",
+    "size": 545
+  },
+  {
+    "name": "factorail.c",
+    "type": "file",
+    "size": 337
+  },
+  {
+    "name": "fibnoic_series.c",
+    "type": "file",
+    "size": 495
+  },
+  {
+    "name": "function_pointer",
+    "type": "folder"
+  },
+  {
+    "name": "gcd.c",
+    "type": "file",
+    "size": 106
+  },
+  {
+    "name": "increment_var.c",
+    "type": "file",
+    "size": 212
+  },
+  {
+    "name": "inline_functions",
+    "type": "folder"
+  },
+  {
+    "name": "NO_arguments_return.c",
+    "type": "file",
+    "size": 391
+  },
+  {
+    "name": "prime.c",
+    "type": "file",
+    "size": 465
+  },
+  {
+    "name": "recursive_functions",
+    "type": "folder"
+  },
+  {
+    "name": "reverse.c",
+    "type": "file",
+    "size": 351
+  },
+  {
+    "name": "reverse_bitwise.c",
+    "type": "file",
+    "size": 488
+  },
+  {
+    "name": "second_largest.c",
+    "type": "file",
+    "size": 607
+  },
+  {
+    "name": "setbit_final.c",
+    "type": "file",
+    "size": 311
+  },
+  {
+    "name": "storage_classes",
+    "type": "folder"
+  },
+  {
+    "name": "sum_of_digits.c",
+    "type": "file",
+    "size": 329
+  },
+  {
+    "name": "swap_temp.c",
+    "type": "file",
+    "size": 233
+  },
+  {
+    "name": "swap_var.c",
+    "type": "file",
+    "size": 298
+  },
+  {
+    "name": "Tasks",
+    "type": "folder"
+  },
+  {
+    "name": "twin_prime.c",
+    "type": "file",
+    "size": 473
+  },
+  {
+    "name": "types",
+    "type": "folder"
+  },
+  {
+    "name": "uisng_pointer_swap.c",
+    "type": "file",
+    "size": 476
+  },
+  {
+    "name": "using_pointer_increment.c",
+    "type": "file",
+    "size": 286
+  },
+  {
+    "name": "with_arguments_No_return.c",
+    "type": "file",
+    "size": 1197
+  }
+]

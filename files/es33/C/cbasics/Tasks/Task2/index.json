@@ -1,0 +1,42 @@
+[
+  {
+    "name": "2nd_largest_digit.c",
+    "type": "file",
+    "size": 664
+  },
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "count_prime.c",
+    "type": "file",
+    "size": 576
+  },
+  {
+    "name": "factorail.c",
+    "type": "file",
+    "size": 229
+  },
+  {
+    "name": "n_palindrome.c",
+    "type": "file",
+    "size": 434
+  },
+  {
+    "name": "num_prime.c",
+    "type": "file",
+    "size": 509
+  },
+  {
+    "name": "number_setbits.c",
+    "type": "file",
+    "size": 311
+  },
+  {
+    "name": "square_number.c",
+    "type": "file",
+    "size": 379
+  }
+]

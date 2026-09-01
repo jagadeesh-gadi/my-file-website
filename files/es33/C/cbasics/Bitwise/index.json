@@ -1,0 +1,76 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16112
+  },
+  {
+    "name": "bitwise.c",
+    "type": "file",
+    "size": 221
+  },
+  {
+    "name": "Bitwise.h",
+    "type": "file",
+    "size": 261
+  },
+  {
+    "name": "Bitwise_Extract.c",
+    "type": "file",
+    "size": 267
+  },
+  {
+    "name": "Bitwise_Left.c",
+    "type": "file",
+    "size": 298
+  },
+  {
+    "name": "BItwise_op.c",
+    "type": "file",
+    "size": 722
+  },
+  {
+    "name": "Bitwise_Replace.c",
+    "type": "file",
+    "size": 325
+  },
+  {
+    "name": "Bitwise_Right.c",
+    "type": "file",
+    "size": 298
+  },
+  {
+    "name": "BitwiseAND.c",
+    "type": "file",
+    "size": 351
+  },
+  {
+    "name": "BitwiseNOT.c",
+    "type": "file",
+    "size": 346
+  },
+  {
+    "name": "BitwiseOR.c",
+    "type": "file",
+    "size": 349
+  },
+  {
+    "name": "BitwiseXOR.c",
+    "type": "file",
+    "size": 352
+  },
+  {
+    "name": "count_bit.c",
+    "type": "file",
+    "size": 629
+  },
+  {
+    "name": "reverse_bits.c",
+    "type": "file",
+    "size": 337
+  },
+  {
+    "name": "Tasks",
+    "type": "folder"
+  }
+]

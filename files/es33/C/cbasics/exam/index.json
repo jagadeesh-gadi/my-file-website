@@ -1,0 +1,32 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16064
+  },
+  {
+    "name": "all.c",
+    "type": "file",
+    "size": 0
+  },
+  {
+    "name": "bufferoverflow.c",
+    "type": "file",
+    "size": 1542
+  },
+  {
+    "name": "find_length.c",
+    "type": "file",
+    "size": 0
+  },
+  {
+    "name": "memory_errors",
+    "type": "file",
+    "size": 18352
+  },
+  {
+    "name": "program",
+    "type": "file",
+    "size": 22312
+  }
+]

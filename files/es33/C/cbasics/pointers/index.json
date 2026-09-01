@@ -1,0 +1,44 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16112
+  },
+  {
+    "name": "arrays_pointers",
+    "type": "folder"
+  },
+  {
+    "name": "basics.c",
+    "type": "file",
+    "size": 1051
+  },
+  {
+    "name": "basics_pointers.c",
+    "type": "file",
+    "size": 619
+  },
+  {
+    "name": "const",
+    "type": "folder"
+  },
+  {
+    "name": "doublepointers",
+    "type": "folder"
+  },
+  {
+    "name": "traverse.c",
+    "type": "file",
+    "size": 264
+  },
+  {
+    "name": "usingarray_pointer",
+    "type": "file",
+    "size": 17616
+  },
+  {
+    "name": "usingarray_pointer.c",
+    "type": "file",
+    "size": 1076
+  }
+]

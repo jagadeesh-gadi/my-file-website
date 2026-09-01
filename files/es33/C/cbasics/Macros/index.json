@@ -1,0 +1,37 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "conditional_macro.c",
+    "type": "file",
+    "size": 180
+  },
+  {
+    "name": "find_setbit.c",
+    "type": "file",
+    "size": 382
+  },
+  {
+    "name": "functional_macro.c",
+    "type": "file",
+    "size": 145
+  },
+  {
+    "name": "multiline_macro.c",
+    "type": "file",
+    "size": 290
+  },
+  {
+    "name": "object_type.c",
+    "type": "file",
+    "size": 249
+  },
+  {
+    "name": "Predefined_macro.c",
+    "type": "file",
+    "size": 292
+  }
+]

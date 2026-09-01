@@ -1,0 +1,66 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16024
+  },
+  {
+    "name": "basic.c",
+    "type": "file",
+    "size": 340
+  },
+  {
+    "name": "count_char.c",
+    "type": "file",
+    "size": 804
+  },
+  {
+    "name": "duplicates_remove.c",
+    "type": "file",
+    "size": 763
+  },
+  {
+    "name": "highest_ascii_value.c",
+    "type": "file",
+    "size": 257
+  },
+  {
+    "name": "inbuild_strings.c",
+    "type": "file",
+    "size": 1446
+  },
+  {
+    "name": "libary_functions.c",
+    "type": "file",
+    "size": 427
+  },
+  {
+    "name": "longest_word.c",
+    "type": "file",
+    "size": 583
+  },
+  {
+    "name": "non_repating_char.c",
+    "type": "file",
+    "size": 499
+  },
+  {
+    "name": "ownfunctions",
+    "type": "folder"
+  },
+  {
+    "name": "palindrome.c",
+    "type": "file",
+    "size": 493
+  },
+  {
+    "name": "reverse_string.c",
+    "type": "file",
+    "size": 442
+  },
+  {
+    "name": "upper_case_t_lower_case.c",
+    "type": "file",
+    "size": 384
+  }
+]

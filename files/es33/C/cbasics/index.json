@@ -1,0 +1,185 @@
+[
+  {
+    "name": "112_triad.c",
+    "type": "file",
+    "size": 930
+  },
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16016
+  },
+  {
+    "name": "address_pointers.c",
+    "type": "file",
+    "size": 157
+  },
+  {
+    "name": "Arithametic_op.c",
+    "type": "file",
+    "size": 326
+  },
+  {
+    "name": "arrays",
+    "type": "folder"
+  },
+  {
+    "name": "Assignement_op.c",
+    "type": "file",
+    "size": 315
+  },
+  {
+    "name": "Assignments",
+    "type": "folder"
+  },
+  {
+    "name": "Bitwise",
+    "type": "folder"
+  },
+  {
+    "name": "command_line_arguments",
+    "type": "folder"
+  },
+  {
+    "name": "Control_statments",
+    "type": "folder"
+  },
+  {
+    "name": "conversions.c",
+    "type": "file",
+    "size": 560
+  },
+  {
+    "name": "dynamic_c",
+    "type": "folder"
+  },
+  {
+    "name": "enum",
+    "type": "folder"
+  },
+  {
+    "name": "error.c",
+    "type": "file",
+    "size": 426
+  },
+  {
+    "name": "exam",
+    "type": "folder"
+  },
+  {
+    "name": "Formate_specifiers.c",
+    "type": "file",
+    "size": 1873
+  },
+  {
+    "name": "Functions",
+    "type": "folder"
+  },
+  {
+    "name": "hello",
+    "type": "file",
+    "size": 15960
+  },
+  {
+    "name": "hello.c",
+    "type": "file",
+    "size": 143
+  },
+  {
+    "name": "hello.o",
+    "type": "file",
+    "size": 1020
+  },
+  {
+    "name": "hello32",
+    "type": "file",
+    "size": 14908
+  },
+  {
+    "name": "hello64",
+    "type": "file",
+    "size": 14908
+  },
+  {
+    "name": "hello_arm",
+    "type": "file",
+    "size": 641032
+  },
+  {
+    "name": "hello_arm64",
+    "type": "file",
+    "size": 641032
+  },
+  {
+    "name": "ht.html",
+    "type": "file",
+    "size": 3531
+  },
+  {
+    "name": "inifinte_loop.c",
+    "type": "file",
+    "size": 996
+  },
+  {
+    "name": "Macros",
+    "type": "folder"
+  },
+  {
+    "name": "Patterns",
+    "type": "folder"
+  },
+  {
+    "name": "pointers",
+    "type": "folder"
+  },
+  {
+    "name": "practice",
+    "type": "folder"
+  },
+  {
+    "name": "precedence",
+    "type": "folder"
+  },
+  {
+    "name": "printf_func.c",
+    "type": "file",
+    "size": 196
+  },
+  {
+    "name": "russian_peasent.c",
+    "type": "file",
+    "size": 343
+  },
+  {
+    "name": "sizes_datatypes.c",
+    "type": "file",
+    "size": 1037
+  },
+  {
+    "name": "static_method.c",
+    "type": "file",
+    "size": 288
+  },
+  {
+    "name": "string.c",
+    "type": "file",
+    "size": 295
+  },
+  {
+    "name": "strings",
+    "type": "folder"
+  },
+  {
+    "name": "structure",
+    "type": "folder"
+  },
+  {
+    "name": "Tasks",
+    "type": "folder"
+  },
+  {
+    "name": "Type_conversions.c",
+    "type": "file",
+    "size": 1150
+  }
+]

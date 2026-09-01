@@ -1,0 +1,135 @@
+[
+  {
+    "name": ".spiral.c.swp",
+    "type": "file",
+    "size": 12288
+  },
+  {
+    "name": "2_sumproblem.c",
+    "type": "file",
+    "size": 354
+  },
+  {
+    "name": "2D_array",
+    "type": "folder"
+  },
+  {
+    "name": "3D_array",
+    "type": "folder"
+  },
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16024
+  },
+  {
+    "name": "array_initi.c",
+    "type": "file",
+    "size": 1411
+  },
+  {
+    "name": "array_of_pointers.c",
+    "type": "file",
+    "size": 336
+  },
+  {
+    "name": "array_of_strings.c",
+    "type": "file",
+    "size": 363
+  },
+  {
+    "name": "arrayset_clear.c",
+    "type": "file",
+    "size": 627
+  },
+  {
+    "name": "Bubble_sort.c",
+    "type": "file",
+    "size": 558
+  },
+  {
+    "name": "char_t_array.c",
+    "type": "file",
+    "size": 773
+  },
+  {
+    "name": "common_ele.c",
+    "type": "file",
+    "size": 535
+  },
+  {
+    "name": "copy_values.c",
+    "type": "file",
+    "size": 98
+  },
+  {
+    "name": "count_positve_negative.c",
+    "type": "file",
+    "size": 570
+  },
+  {
+    "name": "countsetbits_array.c",
+    "type": "file",
+    "size": 360
+  },
+  {
+    "name": "duplicates.c",
+    "type": "file",
+    "size": 632
+  },
+  {
+    "name": "even_odd_sort.c",
+    "type": "file",
+    "size": 734
+  },
+  {
+    "name": "find_min_max.c",
+    "type": "file",
+    "size": 554
+  },
+  {
+    "name": "inserction_sort.c",
+    "type": "file",
+    "size": 487
+  },
+  {
+    "name": "move_all_zeros.c",
+    "type": "file",
+    "size": 709
+  },
+  {
+    "name": "nextgreatest_ele.c",
+    "type": "file",
+    "size": 1129
+  },
+  {
+    "name": "pointer_t_array.c",
+    "type": "file",
+    "size": 227
+  },
+  {
+    "name": "reverse_array.c",
+    "type": "file",
+    "size": 261
+  },
+  {
+    "name": "roatate_left.c",
+    "type": "file",
+    "size": 524
+  },
+  {
+    "name": "second_largest.c",
+    "type": "file",
+    "size": 483
+  },
+  {
+    "name": "selection_sort.c",
+    "type": "file",
+    "size": 626
+  },
+  {
+    "name": "stocks_related.c",
+    "type": "file",
+    "size": 436
+  }
+]

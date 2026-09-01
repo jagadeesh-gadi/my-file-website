@@ -1,0 +1,17 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "multiplication.c",
+    "type": "file",
+    "size": 179
+  },
+  {
+    "name": "Task.c",
+    "type": "file",
+    "size": 1680
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16008
+  },
+  {
+    "name": "global_var.c",
+    "type": "file",
+    "size": 245
+  },
+  {
+    "name": "lifetime_local.c",
+    "type": "file",
+    "size": 112
+  },
+  {
+    "name": "local_var.c",
+    "type": "file",
+    "size": 207
+  }
+]

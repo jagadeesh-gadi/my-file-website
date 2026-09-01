@@ -1,0 +1,52 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16136
+  },
+  {
+    "name": "my_strchar.c",
+    "type": "file",
+    "size": 348
+  },
+  {
+    "name": "my_strcompare.c",
+    "type": "file",
+    "size": 433
+  },
+  {
+    "name": "my_strcopy.c",
+    "type": "file",
+    "size": 364
+  },
+  {
+    "name": "my_stringconcat.c",
+    "type": "file",
+    "size": 445
+  },
+  {
+    "name": "my_stringnconcat.c",
+    "type": "file",
+    "size": 494
+  },
+  {
+    "name": "my_strlength.c",
+    "type": "file",
+    "size": 330
+  },
+  {
+    "name": "my_strncopy.c",
+    "type": "file",
+    "size": 425
+  },
+  {
+    "name": "my_strrchar.c",
+    "type": "file",
+    "size": 371
+  },
+  {
+    "name": "my_substr.c",
+    "type": "file",
+    "size": 713
+  }
+]

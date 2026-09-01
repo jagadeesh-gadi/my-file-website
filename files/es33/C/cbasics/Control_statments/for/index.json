@@ -1,0 +1,22 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "Dummy.c",
+    "type": "file",
+    "size": 0
+  },
+  {
+    "name": "multiplication.c",
+    "type": "file",
+    "size": 195
+  },
+  {
+    "name": "using_shift.c",
+    "type": "file",
+    "size": 1027
+  }
+]

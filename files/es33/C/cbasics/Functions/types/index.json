@@ -1,0 +1,27 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16104
+  },
+  {
+    "name": "aurg_outreturn.c",
+    "type": "file",
+    "size": 211
+  },
+  {
+    "name": "aurg_return.c",
+    "type": "file",
+    "size": 272
+  },
+  {
+    "name": "outaurg_outreturn.c",
+    "type": "file",
+    "size": 128
+  },
+  {
+    "name": "outaurg_return.c",
+    "type": "file",
+    "size": 153
+  }
+]

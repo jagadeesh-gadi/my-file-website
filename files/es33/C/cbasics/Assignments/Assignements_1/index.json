@@ -1,0 +1,32 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16056
+  },
+  {
+    "name": "ascii.c",
+    "type": "file",
+    "size": 227
+  },
+  {
+    "name": "hello.c",
+    "type": "file",
+    "size": 118
+  },
+  {
+    "name": "path.c",
+    "type": "file",
+    "size": 180
+  },
+  {
+    "name": "stepbystep.c",
+    "type": "file",
+    "size": 107
+  },
+  {
+    "name": "table.c",
+    "type": "file",
+    "size": 168
+  }
+]

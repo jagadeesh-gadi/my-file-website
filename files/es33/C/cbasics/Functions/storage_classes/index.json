@@ -1,0 +1,52 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16304
+  },
+  {
+    "name": "auto.c",
+    "type": "file",
+    "size": 851
+  },
+  {
+    "name": "callby_reference.c",
+    "type": "file",
+    "size": 1949
+  },
+  {
+    "name": "extern.c",
+    "type": "file",
+    "size": 356
+  },
+  {
+    "name": "extern1.c",
+    "type": "file",
+    "size": 299
+  },
+  {
+    "name": "Register.c",
+    "type": "file",
+    "size": 204
+  },
+  {
+    "name": "Register.o",
+    "type": "file",
+    "size": 1600
+  },
+  {
+    "name": "static",
+    "type": "file",
+    "size": 16064
+  },
+  {
+    "name": "static_ex.c",
+    "type": "file",
+    "size": 188
+  },
+  {
+    "name": "static_ex2.c",
+    "type": "file",
+    "size": 178
+  }
+]

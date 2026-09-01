@@ -1,0 +1,27 @@
+[
+  {
+    "name": "2",
+    "type": "file",
+    "size": 16096
+  },
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "optim",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "power",
+    "type": "file",
+    "size": 16096
+  },
+  {
+    "name": "power_of.c",
+    "type": "file",
+    "size": 379
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16320
+  },
+  {
+    "name": "calloc.c",
+    "type": "file",
+    "size": 648
+  },
+  {
+    "name": "malloc",
+    "type": "file",
+    "size": 16008
+  },
+  {
+    "name": "malloc.c",
+    "type": "file",
+    "size": 925
+  },
+  {
+    "name": "realloc.c",
+    "type": "file",
+    "size": 1060
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16096
+  },
+  {
+    "name": "c.c",
+    "type": "file",
+    "size": 62
+  },
+  {
+    "name": "case.c",
+    "type": "file",
+    "size": 985
+  },
+  {
+    "name": "hello.c",
+    "type": "file",
+    "size": 69
+  },
+  {
+    "name": "hi",
+    "type": "file",
+    "size": 15960
+  },
+  {
+    "name": "hiii",
+    "type": "file",
+    "size": 15960
+  },
+  {
+    "name": "Swap_pointers.c",
+    "type": "file",
+    "size": 252
+  },
+  {
+    "name": "swap_xor.c",
+    "type": "file",
+    "size": 265
+  },
+  {
+    "name": "Swapping_Function.c",
+    "type": "file",
+    "size": 334
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16072
+  },
+  {
+    "name": "const.c",
+    "type": "file",
+    "size": 904
+  },
+  {
+    "name": "const_char_const_pointer.c",
+    "type": "file",
+    "size": 436
+  },
+  {
+    "name": "const_pointer_char.c",
+    "type": "file",
+    "size": 470
+  },
+  {
+    "name": "pointer_const.c",
+    "type": "file",
+    "size": 327
+  }
+]

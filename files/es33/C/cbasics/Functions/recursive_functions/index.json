@@ -1,0 +1,62 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16112
+  },
+  {
+    "name": "dec_to_bin.c",
+    "type": "file",
+    "size": 263
+  },
+  {
+    "name": "fact.c",
+    "type": "file",
+    "size": 370
+  },
+  {
+    "name": "fibnoic.c",
+    "type": "file",
+    "size": 307
+  },
+  {
+    "name": "n_number.c",
+    "type": "file",
+    "size": 204
+  },
+  {
+    "name": "odd_number_replace.c",
+    "type": "file",
+    "size": 1062
+  },
+  {
+    "name": "oms.c",
+    "type": "file",
+    "size": 367
+  },
+  {
+    "name": "power_of.c",
+    "type": "file",
+    "size": 651
+  },
+  {
+    "name": "reverse_number.c",
+    "type": "file",
+    "size": 260
+  },
+  {
+    "name": "string_reverse.c",
+    "type": "file",
+    "size": 450
+  },
+  {
+    "name": "sum_of.c",
+    "type": "file",
+    "size": 360
+  },
+  {
+    "name": "sum_of_numbers.c",
+    "type": "file",
+    "size": 200
+  }
+]

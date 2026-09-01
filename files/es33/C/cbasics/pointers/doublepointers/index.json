@@ -1,0 +1,17 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16024
+  },
+  {
+    "name": "pointer_to_pointer.c",
+    "type": "file",
+    "size": 487
+  },
+  {
+    "name": "usingmalloc.c",
+    "type": "file",
+    "size": 963
+  }
+]
