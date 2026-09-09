@@ -1,9 +1,5 @@
 [
   {
-    "name": ".vscode",
-    "type": "folder"
-  },
-  {
     "name": "112_triad.c",
     "type": "file",
     "size": 930
@@ -24,29 +20,9 @@
     "size": 326
   },
   {
-    "name": "arrays",
-    "type": "folder"
-  },
-  {
     "name": "Assignement_op.c",
     "type": "file",
     "size": 315
-  },
-  {
-    "name": "Assignments",
-    "type": "folder"
-  },
-  {
-    "name": "Bitwise",
-    "type": "folder"
-  },
-  {
-    "name": "command_line_arguments",
-    "type": "folder"
-  },
-  {
-    "name": "Control_statments",
-    "type": "folder"
   },
   {
     "name": "conversions.c",
@@ -54,30 +30,14 @@
     "size": 560
   },
   {
-    "name": "dynamic_c",
-    "type": "folder"
-  },
-  {
-    "name": "enum",
-    "type": "folder"
-  },
-  {
     "name": "error.c",
     "type": "file",
     "size": 426
   },
   {
-    "name": "exam",
-    "type": "folder"
-  },
-  {
     "name": "Formate_specifiers.c",
     "type": "file",
     "size": 1873
-  },
-  {
-    "name": "Functions",
-    "type": "folder"
   },
   {
     "name": "hello",
@@ -125,34 +85,6 @@
     "size": 996
   },
   {
-    "name": "linked_lists",
-    "type": "folder"
-  },
-  {
-    "name": "Macros",
-    "type": "folder"
-  },
-  {
-    "name": "more_basics.c",
-    "type": "folder"
-  },
-  {
-    "name": "Patterns",
-    "type": "folder"
-  },
-  {
-    "name": "pointers",
-    "type": "folder"
-  },
-  {
-    "name": "practice",
-    "type": "folder"
-  },
-  {
-    "name": "precedence",
-    "type": "folder"
-  },
-  {
     "name": "printf_func.c",
     "type": "file",
     "size": 196
@@ -178,24 +110,8 @@
     "size": 295
   },
   {
-    "name": "strings",
-    "type": "folder"
-  },
-  {
-    "name": "structure",
-    "type": "folder"
-  },
-  {
-    "name": "Tasks",
-    "type": "folder"
-  },
-  {
     "name": "Type_conversions.c",
     "type": "file",
     "size": 1150
-  },
-  {
-    "name": "union",
-    "type": "folder"
   }
 ]

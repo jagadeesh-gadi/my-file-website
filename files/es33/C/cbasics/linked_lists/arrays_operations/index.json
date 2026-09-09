@@ -1,0 +1,17 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16448
+  },
+  {
+    "name": "another.c",
+    "type": "file",
+    "size": 9176
+  },
+  {
+    "name": "operations_arrays.c",
+    "type": "file",
+    "size": 3465
+  }
+]

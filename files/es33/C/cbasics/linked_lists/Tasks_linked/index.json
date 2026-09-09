@@ -1,0 +1,32 @@
+[
+  {
+    "name": "count.c",
+    "type": "file",
+    "size": 451
+  },
+  {
+    "name": "count.h",
+    "type": "file",
+    "size": 162
+  },
+  {
+    "name": "display.c",
+    "type": "file",
+    "size": 4018
+  },
+  {
+    "name": "display.h",
+    "type": "file",
+    "size": 694
+  },
+  {
+    "name": "linked",
+    "type": "file",
+    "size": 16600
+  },
+  {
+    "name": "main.c",
+    "type": "file",
+    "size": 1574
+  }
+]

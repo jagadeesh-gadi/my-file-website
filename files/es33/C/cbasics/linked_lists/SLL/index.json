@@ -1,0 +1,32 @@
+[
+  {
+    "name": "circular_linked_list.c",
+    "type": "file",
+    "size": 1130
+  },
+  {
+    "name": "reversal_linked.c",
+    "type": "file",
+    "size": 1446
+  },
+  {
+    "name": "searching.c",
+    "type": "file",
+    "size": 913
+  },
+  {
+    "name": "self_structure.c",
+    "type": "file",
+    "size": 597
+  },
+  {
+    "name": "swap_nodes.c",
+    "type": "file",
+    "size": 1750
+  },
+  {
+    "name": "traversing.c",
+    "type": "file",
+    "size": 600
+  }
+]
