@@ -1,4 +1,3 @@
-
 const ROOT_FOLDER = "files";
 
 
