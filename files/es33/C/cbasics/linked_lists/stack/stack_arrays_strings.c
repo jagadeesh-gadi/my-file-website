@@ -1,16 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-#define size 10
+#define SIZE 80
 
-char data[size];
+char data[SIZE];
 int top = -1;
 
 void push(char c)
 {
-    if (top == size - 1)
+    if (top == SIZE - 1)
     {
-        printf("stack overflow\n");
+        printf("Stack Overflow\n");
         return;
     }
 
@@ -22,69 +21,36 @@ void pop()
 {
     if (top == -1)
     {
-        printf("stack underflow\n");
+        printf("Stack Underflow\n");
         return;
     }
 
-    printf("delete data :: %c\n", data[top]);
+    printf("%c", data[top]);
     top--;
-}
-
-void display()
-{
-    int i;
-
-    if (top == -1)
-    {
-        printf("stack was empty\n");
-        return;
-    }
-
-    for (i = top; i >= 0; i--)
-    {
-        printf("%c", data[i]);
-    }
-
-    printf("\n");
-}
-
-void reverse()
-{
-    int i;
-
-    if (top == -1)
-    {
-        printf("stack was empty\n");
-        return;
-    }
-
-    printf("reverse string :: ");
-
-    for (i = top; i >= 0; i--)
-    {
-        printf("%c", data[i]);
-    }
-
-    printf("\n");
 }
 
 int main()
 {
-    int i;
-    char str[size];
+    char str[SIZE];
+    int i = 0;
 
-    printf("enter string :: ");
-    fgets(str, size, stdin);
+    printf("Enter string: ");
+    fgets(str, SIZE, stdin);
 
-    for (i = 0; str[i] != '\0' && str[i] != '\n'; i++)
+    while (str[i] != '\0' && str[i] != '\n')
     {
         push(str[i]);
+        i++;
     }
 
-    printf("\nstack data :: ");
-    display();
+    printf("Pop characters: ");
 
-    reverse();
+    while (top != -1)
+    {
+        pop();
+    }
+
+    printf("\n");
 
     return 0;
 }

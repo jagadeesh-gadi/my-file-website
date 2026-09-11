@@ -2,7 +2,12 @@
   {
     "name": "a.out",
     "type": "file",
-    "size": 16064
+    "size": 16296
+  },
+  {
+    "name": "array_structure.c",
+    "type": "file",
+    "size": 1211
   },
   {
     "name": "basic.c",
@@ -10,8 +15,68 @@
     "size": 623
   },
   {
+    "name": "endianess.c",
+    "type": "file",
+    "size": 153
+  },
+  {
+    "name": "endianess_struct.c",
+    "type": "file",
+    "size": 652
+  },
+  {
+    "name": "enum_struct",
+    "type": "file",
+    "size": 17985
+  },
+  {
+    "name": "enum_struct.c",
+    "type": "file",
+    "size": 1400
+  },
+  {
+    "name": "global_local.c",
+    "type": "file",
+    "size": 721
+  },
+  {
+    "name": "members.c",
+    "type": "file",
+    "size": 851
+  },
+  {
     "name": "n_values.c",
     "type": "file",
     "size": 637
+  },
+  {
+    "name": "padding_pack.c",
+    "type": "file",
+    "size": 399
+  },
+  {
+    "name": "pass_struct_function.c",
+    "type": "file",
+    "size": 533
+  },
+  {
+    "name": "product_max.c",
+    "type": "file",
+    "size": 2051
+  },
+  {
+    "name": "string_struct.c",
+    "type": "file",
+    "size": 591
+  },
+  {
+    "name": "using_const_struct.c",
+    "type": "file",
+    "size": 328
+  },
+  {
+    "name": "using_pointers.c",
+    "type": "file",
+    "size": 309
   }
 ]

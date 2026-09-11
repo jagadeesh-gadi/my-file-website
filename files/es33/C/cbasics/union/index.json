@@ -1,0 +1,17 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16000
+  },
+  {
+    "name": "basic.c",
+    "type": "file",
+    "size": 399
+  },
+  {
+    "name": "using_type.c",
+    "type": "file",
+    "size": 272
+  }
+]

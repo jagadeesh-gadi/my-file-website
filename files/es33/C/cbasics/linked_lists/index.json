@@ -1,0 +1,42 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16240
+  },
+  {
+    "name": "arrays_operations",
+    "type": "folder"
+  },
+  {
+    "name": "basic.c",
+    "type": "file",
+    "size": 496
+  },
+  {
+    "name": "DLL",
+    "type": "folder"
+  },
+  {
+    "name": "reverse",
+    "type": "file",
+    "size": 16200
+  },
+  {
+    "name": "search",
+    "type": "file",
+    "size": 16536
+  },
+  {
+    "name": "SLL",
+    "type": "folder"
+  },
+  {
+    "name": "stack",
+    "type": "folder"
+  },
+  {
+    "name": "Tasks_linked",
+    "type": "folder"
+  }
+]

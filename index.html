@@ -1,74 +1,504 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My C Files</title>
+    <meta name="description"
+        content="C Programming File Library - Browse C programming files, folders and source code">
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <title>C Programming Library</title>
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
+    <div class="app">
 
-        <h1>📚 My C Programming Files</h1>
+        <!-- =====================================================
+             LEFT SIDEBAR
+        ====================================================== -->
 
-        <p>
-            Browse my C programs and folders
-        </p>
+        <aside class="sidebar">
 
-    </header>
+            <!-- LOGO -->
+            <div class="sidebar-logo">
+
+                <div class="logo-box">
+                    C
+                </div>
+
+                <div class="logo-text">
+                    <h2>C Library</h2>
+                    <p>Programming Files</p>
+                </div>
+
+            </div>
 
 
-    <main>
+            <!-- EXPLORER -->
+            <div class="explorer">
 
-        <div class="toolbar">
+                <div class="explorer-title">
+                    <span>EXPLORER</span>
+                </div>
 
-            <button
-                id="homeButton"
-            >
-                🏠 Home
-            </button>
 
-            <span
-                id="currentPath"
-            >
-                /
-            </span>
+                <!-- DYNAMIC TREE WILL LOAD HERE -->
+                <div id="folderTree" class="folder-tree">
+
+                    <div class="tree-loading">
+
+                        <div class="tree-loader"></div>
+
+                        <span>
+                            Loading folders...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="sidebar-bottom">
+
+                <div class="online-status">
+
+                    <span class="status-dot"></span>
+
+                    <div class="status-text">
+
+                        <strong>Library Online</strong>
+
+                        <small>
+                            Files available
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+             MAIN APPLICATION
+        ====================================================== -->
+
+        <div class="main-app">
+
+
+            <!-- =================================================
+                 TOP BAR
+            ================================================== -->
+
+            <header class="topbar">
+
+                <!-- Mobile Logo -->
+                <div class="mobile-logo">
+
+                    <div class="logo-box">
+                        C
+                    </div>
+
+                    <strong>
+                        C Library
+                    </strong>
+
+                </div>
+
+
+                <!-- SEARCH -->
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search files and folders..."
+                        autocomplete="off"
+                        spellcheck="false">
+
+                </div>
+
+
+                <!-- ACTIONS -->
+                <div class="top-actions">
+
+                    <button
+                        id="refreshButton"
+                        class="top-button"
+                        type="button"
+                        title="Refresh">
+
+                        ↻
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <main class="content">
+
+
+                <!-- BREADCRUMB -->
+
+                <div class="breadcrumb-section">
+
+                    <div id="breadcrumb" class="breadcrumb">
+
+                        <button
+                            id="breadcrumbHome"
+                            class="breadcrumb-home"
+                            type="button">
+
+                            Home
+
+                        </button>
+
+                        <span class="breadcrumb-separator">
+                            /
+                        </span>
+
+                        <span id="currentPath">
+                            /
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PAGE HEADER
+                ================================================== -->
+
+                <section class="page-header">
+
+                    <div class="page-title">
+
+                        <div class="large-folder-icon">
+                            📁
+                        </div>
+
+                        <div>
+
+                            <h1 id="folderTitle">
+                                C Programming
+                            </h1>
+
+                            <p id="folderDescription">
+                                Browse your C programming files and folders
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="header-actions">
+
+                        <button
+                            id="backButton"
+                            class="back-button"
+                            type="button">
+
+                            <span>←</span>
+
+                            Back
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     STATISTICS
+                ================================================== -->
+
+                <section class="stats">
+
+                    <!-- FOLDERS -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon folder-stat">
+                            📁
+                        </div>
+
+                        <div class="stat-content">
+
+                            <strong id="folderCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Folders
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FILES -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon file-stat">
+                            📄
+                        </div>
+
+                        <div class="stat-content">
+
+                            <strong id="fileCount">
+                                0
+                            </strong>
+
+                            <span>
+                                Files
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     FILE SECTION
+                ================================================== -->
+
+                <section class="files-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Files &amp; Folders
+                            </h2>
+
+                            <p>
+                                Browse the contents of this directory
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            id="itemCount"
+                            class="item-count">
+
+                            0 items
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FILE CARDS -->
+
+                    <div
+                        id="file-container"
+                        class="file-container">
+
+                        <div class="loading">
+
+                            <div class="loader"></div>
+
+                            <p>
+                                Loading files...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+
+
+            <!-- =================================================
+                 CODE VIEWER
+            ================================================== -->
+
+            <div
+                id="codeViewer"
+                class="code-viewer hidden">
+
+
+                <!-- CODE HEADER -->
+
+                <div class="code-header">
+
+                    <div class="code-file-info">
+
+                        <div class="code-file-icon">
+                            C
+                        </div>
+
+                        <div>
+
+                            <strong id="codeFileName">
+                                file.c
+                            </strong>
+
+                            <small>
+                                C Source File
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CODE ACTIONS -->
+
+                    <div class="code-actions">
+
+                        <button
+                            id="copyCode"
+                            class="code-button"
+                            type="button">
+
+                            Copy
+
+                        </button>
+
+                        <button
+                            id="downloadCode"
+                            class="code-button"
+                            type="button">
+
+                            Download
+
+                        </button>
+
+                        <button
+                            id="openCodeNewTab"
+                            class="code-button"
+                            type="button">
+
+                            Open
+
+                        </button>
+
+                        <button
+                            id="closeCode"
+                            class="close-button"
+                            type="button"
+                            aria-label="Close">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CODE BODY -->
+
+                <div class="code-body">
+
+                    <pre><code id="codeContent"></code></pre>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MOBILE NAVIGATION
+            ================================================== -->
+
+            <nav class="mobile-nav">
+
+                <button
+                    id="mobileHome"
+                    class="mobile-nav-item active"
+                    type="button">
+
+                    <span>⌂</span>
+
+                    <small>
+                        Home
+                    </small>
+
+                </button>
+
+
+                <button
+                    id="mobileBack"
+                    class="mobile-nav-item"
+                    type="button">
+
+                    <span>←</span>
+
+                    <small>
+                        Back
+                    </small>
+
+                </button>
+
+
+                <button
+                    id="mobileRefresh"
+                    class="mobile-nav-item"
+                    type="button">
+
+                    <span>↻</span>
+
+                    <small>
+                        Refresh
+                    </small>
+
+                </button>
+
+            </nav>
 
         </div>
 
-
-        <div
-            id="file-container"
-            class="file-container"
-        >
-
-            <p>
-                Loading...
-            </p>
-
-        </div>
-
-    </main>
+    </div>
 
 
-    <script
-        src="script.js"
-    ></script>
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
 
 </body>
 
 </html>
+
