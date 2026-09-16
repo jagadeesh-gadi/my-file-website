@@ -18,6 +18,10 @@
     "type": "folder"
   },
   {
+    "name": "queue",
+    "type": "folder"
+  },
+  {
     "name": "reverse",
     "type": "file",
     "size": 16200
