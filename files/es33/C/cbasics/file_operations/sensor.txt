@@ -1,0 +1,8 @@
+A
+embedded Systems
+sensor id :: 1234
+temp  :: 28.500000
+Hello, my name is Jagadeesh.
+I am learning C file operations.
+Today I am practicing fwrite and fputs.
+File handling is an important topic in C.
