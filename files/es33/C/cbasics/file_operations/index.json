@@ -1,0 +1,77 @@
+[
+  {
+    "name": "a.out",
+    "type": "file",
+    "size": 16248
+  },
+  {
+    "name": "all.c",
+    "type": "file",
+    "size": 2336
+  },
+  {
+    "name": "append.c",
+    "type": "file",
+    "size": 350
+  },
+  {
+    "name": "copy_file_to_another.c",
+    "type": "file",
+    "size": 460
+  },
+  {
+    "name": "count_all.c",
+    "type": "file",
+    "size": 826
+  },
+  {
+    "name": "des.txt",
+    "type": "file",
+    "size": 15
+  },
+  {
+    "name": "fread.c",
+    "type": "file",
+    "size": 677
+  },
+  {
+    "name": "fwrite.c",
+    "type": "file",
+    "size": 690
+  },
+  {
+    "name": "r+.c",
+    "type": "file",
+    "size": 330
+  },
+  {
+    "name": "search.c",
+    "type": "file",
+    "size": 564
+  },
+  {
+    "name": "sensor.txt",
+    "type": "file",
+    "size": 200
+  },
+  {
+    "name": "some.txt",
+    "type": "file",
+    "size": 76
+  },
+  {
+    "name": "source.txt",
+    "type": "file",
+    "size": 15
+  },
+  {
+    "name": "text.txt",
+    "type": "file",
+    "size": 20
+  },
+  {
+    "name": "w+.c",
+    "type": "file",
+    "size": 228
+  }
+]

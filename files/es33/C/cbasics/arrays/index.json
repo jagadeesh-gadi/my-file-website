@@ -20,7 +20,7 @@
   {
     "name": "a.out",
     "type": "file",
-    "size": 16160
+    "size": 16216
   },
   {
     "name": "array_initi.c",
@@ -86,6 +86,11 @@
     "name": "find_min_max.c",
     "type": "file",
     "size": 554
+  },
+  {
+    "name": "finding_marks.c",
+    "type": "file",
+    "size": 1596
   },
   {
     "name": "inserction_sort.c",
